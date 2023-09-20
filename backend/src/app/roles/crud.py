@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.api.models import Role, RoleSchema
+from app.roles.models import Role, RoleSchema
 from datetime import datetime
 
 

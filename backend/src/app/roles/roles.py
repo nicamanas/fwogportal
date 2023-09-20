@@ -3,8 +3,8 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
 
-from app.api import crud
-from app.api.models import RoleDB, RoleSchema
+from app.roles import crud
+from app.roles.models import RoleDB, RoleSchema
 from app.db import SessionLocal
 
 

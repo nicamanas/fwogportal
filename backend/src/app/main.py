@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from app.api import ping, roles
-from app.api.models import Base
+from app.roles import ping, roles
+from app.roles.models import Base
 from app.db import engine
 
 
