@@ -1,6 +1,6 @@
 # fwogportal
 
-Internal Skill-based Role Portal for ISSoftware Project Management (SPM)
+Internal Skill-based Role Portal for Software Project Management (SPM)
 
 ## Description
 
@@ -15,6 +15,27 @@ An in-depth paragraph about your project and overview of use.
 ### Installing
 
 * 
+
+### Starting frontend
+
+* Change directory to frontend folder
+```
+cd frontend
+```
+
+* Install dependencies
+```
+npm i
+```
+
+* Start development server
+```
+npm run dev
+```
+* Open server in browser, port may be different (check terminal)
+```
+http://localhost:5173/
+```
 
 ### Starting backend
 
