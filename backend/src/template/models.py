@@ -1,12 +1,11 @@
 from pydantic import BaseModel, Field
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, PickleType
 from sqlalchemy.sql import func
 
 from app.db import Base
 
 
 # SQLAlchemy Model
-
 
 class Note(Base):
 
@@ -23,7 +22,6 @@ class Note(Base):
 
 
 # Pydantic Model
-
 
 class NoteSchema(BaseModel):
     title: str = Field(..., min_length=3, max_length=50)
