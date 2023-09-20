@@ -1,0 +1,21 @@
+[
+    {
+        "staff_id": 123456789,
+        "staff_role": 234570011,
+        "role_type": "primary",
+        "sr_status": "active"
+    },
+    {
+        "staff_id": 123456789,
+        "staff_role": 234567893,
+        "role_type": "secondary",
+        "sr_status": "active"
+    },
+    {
+        "staff_id": 123456789,
+        "staff_role": 234511581,
+        "role_type": "secondary",
+        "sr_status": "inactive"
+    }
+    
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "staff_id": 123456789,
+        "skill_id": 345678913,
+        "ss_status": "active"
+    },
+    {
+        "staff_id": 123456789,
+        "skill_id": 345678866,
+        "ss_status": "active"
+    },
+    {
+        "staff_id": 123456789,
+        "skill_id": 345678790,
+        "ss_status": "active"
+    },
+    {
+        "staff_id": 123456789,
+        "skill_id": 345678890,
+        "ss_status": "unverified"
+    },
+    {
+        "staff_id": 123456789,
+        "skill_id": 345678935,
+        "ss_status": "in-progress"
+    },
+    {
+        "staff_id": 123456789,
+        "skill_id": 345678927,
+        "ss_status": "in-progress"
+    }
+]
