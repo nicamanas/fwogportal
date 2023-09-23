@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from sqlalchemy import Column, Integer, String, DateTime, PickleType
 from sqlalchemy.sql import func
-from sqlalchemy.dialects.postgresql import JSON
+from sqlalchemy.dialects.mysql import JSON
 from typing import List
 from datetime import datetime
 
