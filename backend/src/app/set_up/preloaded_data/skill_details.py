@@ -1,4 +1,4 @@
-[
+DEFAULT_SKILL_DETAILS = [
     {
         "skill_id": 345678912,
         "skill_name": "Pascal Programming",
