@@ -1,7 +1,9 @@
 import enum
-from sqlalchemy import Column, Integer, String, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, ForeignKey, Enum, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import JSON
+from sqlalchemy.sql import func
+from datetime import datetime, timedelta
 
 from app.db import Base
 
@@ -74,7 +76,12 @@ class StaffDetails(Base):
 
     staff_roles_staff = relationship("StaffRoles", back_populates="staff")
 
-    def __init__(self, fname, lname, dept, email, phone, biz_address, sys_role):
+    role_listings_source = relationship("RoleListings", back_populates="staff_details_source", primaryjoin='and_(StaffDetails.staff_id == RoleListings.role_listing_source)')
+    role_listings_creator = relationship("RoleListings", back_populates="staff_details_creator", primaryjoin='and_(StaffDetails.staff_id == RoleListings.role_listing_creator)')
+    role_listings_updater = relationship("RoleListings", back_populates="staff_details_updater", primaryjoin='and_(StaffDetails.staff_id == RoleListings.role_listing_updater)')
+
+    def __init__(self, staff_id, fname, lname, dept, email, phone, biz_address, sys_role):
+        self.staff_id = staff_id
         self.fname = fname
         self.lname = lname
         self.dept = dept
@@ -108,7 +115,10 @@ class RoleDetails(Base):
 
     staff_roles_role = relationship("StaffRoles", back_populates="role")
 
-    def __init__(self, role_name, role_description, role_status):
+    role_listings_role_id = relationship("RoleListings", back_populates="role_role_id", primaryjoin='and_(RoleDetails.role_id == RoleListings.role_id)')
+
+    def __init__(self, role_id, role_name, role_description, role_status):
+        self.role_id = role_id
         self.role_name = role_name
         self.role_description = role_description
         self.role_status = role_status
@@ -157,4 +167,39 @@ class StaffRoles(Base):
         self.staff_role = staff_role
         self.role_type = role_type
         self.sr_status = sr_status
+
+class RoleListings(Base):
+    __tablename__ = "role_listings"
+
+    role_listing_id = Column(Integer, primary_key=True, autoincrement=False)
+    role_id = Column(Integer, ForeignKey('role_details.role_id'))
+    role_listing_desc = Column(String(5000))
+    role_listing_source = Column(Integer, ForeignKey('staff_details.staff_id'))
+    role_listing_open = Column(DateTime, default=func.now())
+    role_listing_close = Column(DateTime, default=datetime.utcnow() + timedelta(weeks=2))
+    # system generated fields
+    role_listing_creator = Column(Integer, ForeignKey('staff_details.staff_id'))
+    role_listing_ts_create = Column(DateTime, default=func.now())
+    role_listing_updater = Column(Integer, ForeignKey('staff_details.staff_id'))
+    role_listing_ts_update = Column(DateTime, default=func.now())
+
+    role_role_id = relationship("RoleDetails", back_populates="role_listings_role_id")
+    staff_details_source = relationship("StaffDetails", back_populates="role_listings_source", primaryjoin='and_(RoleListings.role_listing_source == StaffDetails.staff_id)')
+    staff_details_creator = relationship("StaffDetails", back_populates="role_listings_creator", primaryjoin='and_(RoleListings.role_listing_creator == StaffDetails.staff_id)')
+    staff_details_updater = relationship("StaffDetails", back_populates="role_listings_updater", primaryjoin='and_(RoleListings.role_listing_updater == StaffDetails.staff_id)')
+
+    def __init__(self, role_listing_id, role_id, role_listing_desc, role_listing_source, role_listing_open, role_listing_close, role_listing_creator, role_listing_ts_create, role_listing_updater, role_listing_ts_update):
+        self.role_listing_id = role_listing_id
+        self.role_id = role_id
+        self.role_listing_desc = role_listing_desc
+        self.role_listing_source = role_listing_source
+        self.role_listing_open = role_listing_open
+        self.role_listing_close = role_listing_close
+        # system generated fields
+        self.role_listing_creator = role_listing_creator
+        self.role_listing_ts_create = role_listing_ts_create # should not insert if role_listing is being updated
+        self.role_listing_updater = role_listing_updater
+        self.role_listing_ts_update = role_listing_ts_update
+    
+
     
