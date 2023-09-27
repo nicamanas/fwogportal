@@ -1,6 +1,6 @@
-[
+DEFAULT_STAFF_DETAILS = [
   {
-    "staff_id": 123456789,
+    "staff_id": 1,
     "fname": "AH GAO",
     "lname": "TAN",
     "dept": "FINANCE",
@@ -10,7 +10,7 @@
     "sys_role": "staff"
   },
   {
-    "staff_id": 123456788,
+    "staff_id": 2,
     "fname": "VINCENT REX",
     "lname": "COLINS",
     "dept": "HUMAN RESOURCE AND ADMIN",
@@ -20,7 +20,7 @@
     "sys_role": "hr"
   },
   {
-    "staff_id": 123456787,
+    "staff_id": 3,
     "fname": "FAUD",
     "lname": "NIZAM",
     "dept": "SALES",
@@ -30,7 +30,7 @@
     "sys_role": "manager"
   },
   {
-    "staff_id": 123456786,
+    "staff_id": 4,
     "fname": "JOHN",
     "lname": "DOE",
     "dept": "IT",
@@ -39,5 +39,4 @@
     "biz_address": "1 Scotts Rd, #24-10 Shaw Centre, Singapore 228208",
     "sys_role": "inactive"
   }
-  
 ]

@@ -10,4 +10,23 @@ class SkillDetailsRequest(BaseModel):
     skill_name: str
     skill_status: str
 
+class RoleDetailsRequest(BaseModel):
+    role_id: int
+    role_name: str
+    role_description: str
+    role_status: str
+
+class RoleSkillsRequest(BaseModel):
+    role_id: int
+    skill_id: int
+
+class StaffDetailsRequest(BaseModel):
+    staff_id: int
+    fname: str 
+    lname: str
+    dept: str
+    email: str
+    phone: str
+    biz_address: str
+    sys_role: str
     
