@@ -43,14 +43,15 @@ function RoleListingForm() {
     }, []); 
 
     return (
-        <Container maxWidth="md" sx={{backgroundColor:'white', marginTop: 7, padding: 1}}>
-            <Typography variant="h3" sx={{ textAlign: 'center', margin: 5}}>
+        <Container maxWidth="md" sx={{backgroundColor:'white', mt: 7, p: 1}}>
+            <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>
+                <img src="src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
                 Create New Role Listing
             </Typography>
-            <img src="src/assets/pepe.png" alt="Pepe" width="75px"/>;
+            
             <form onSubmit={handleSubmit}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap' }} noValidate autoComplete="off">
-                    <FormControl fullWidth sx={{ m: 1}}>
+                    <FormControl fullWidth sx={{m: 1}}>
                         <InputLabel id="role_id">Role name</InputLabel>
                         <Select
                             required
