@@ -18,10 +18,10 @@ class SkillStatus(enum.Enum):
     INACTIVE = "inactive"
 
 class StaffSysRole(enum.Enum):
-    staff = "staff"
-    hr = "hr"
-    manager = "manager"
-    inactive = "inactive"
+    STAFF = "staff"
+    HR = "hr"
+    MANAGER = "manager"
+    INACTIVE = "inactive"
 
 class RoleStatus(enum.Enum):
     ACTIVE = "active"
@@ -54,7 +54,7 @@ class StaffDetails(Base):
     email = Column(String(50))  
     phone = Column(String(20))
     biz_address = Column(String(255))
-    sys_role = Column(Enum(*[e.value for e in StaffSysRole]), default=StaffSysRole.staff.value)
+    sys_role = Column(Enum(*[e.value for e in StaffSysRole]), default=StaffSysRole.STAFF.value)
 
     staff_reporting_officer_staff = relationship("StaffReportingOfficer", back_populates="staff", primaryjoin='and_(StaffDetails.staff_id == StaffReportingOfficer.staff_id)')
     staff_reporting_officer_officer = relationship("StaffReportingOfficer", back_populates="reporting_officer", primaryjoin='and_(StaffDetails.staff_id == StaffReportingOfficer.RO_id)')
@@ -97,7 +97,7 @@ class SkillDetails(Base):
 
     skill_id = Column(Integer, primary_key=True)
     skill_name = Column(String(50))
-    skill_status = Column(Enum(SkillStatus), default=SkillStatus.ACTIVE)
+    skill_status = Column(Enum(*[e.value for e in SkillStatus]), default=SkillStatus.ACTIVE.value)
 
     staff_skills_skill = relationship("StaffSkills", back_populates="skill")
     role_skills_skill = relationship("RoleSkills", back_populates="skill")
@@ -113,8 +113,8 @@ class RoleDetails(Base):
     role_id = Column(Integer, primary_key=True)
     role_name = Column(String(50))
     role_description = Column(String(5000))
-    role_status = Column(Enum(RoleStatus), default=RoleStatus.ACTIVE)
-
+    role_status = Column(Enum(*[e.value for e in RoleStatus]), default=RoleStatus.ACTIVE.value)
+    
     role_skills_role = relationship("RoleSkills", back_populates="role")
 
     staff_roles_role = relationship("StaffRoles", back_populates="role")
@@ -132,7 +132,7 @@ class StaffSkills(Base):
 
     staff_id = Column(Integer, ForeignKey('staff_details.staff_id'), primary_key=True)
     skill_id = Column(Integer, ForeignKey('skill_details.skill_id'), primary_key=True)
-    ss_status = Column(Enum(StaffSkillsStatus), default=StaffSkillsStatus.ACTIVE)
+    ss_status = Column(Enum(*[e.value for e in StaffSkillsStatus]), default=StaffSkillsStatus.ACTIVE.value)
 
     staff = relationship("StaffDetails", back_populates="staff_skills_staff")
     skill = relationship("SkillDetails", back_populates="staff_skills_skill")
@@ -160,8 +160,8 @@ class StaffRoles(Base):
 
     staff_id = Column(Integer, ForeignKey('staff_details.staff_id'), primary_key=True)
     staff_role = Column(Integer, ForeignKey('role_details.role_id'), primary_key=True)
-    role_type = Column(Enum(RoleType), default=RoleType.PRIMARY)
-    sr_status = Column(Enum(StaffRoleStatus), default=StaffRoleStatus.ACTIVE)
+    role_type = Column(Enum(*[e.value for e in RoleType]), default=RoleType.PRIMARY.value)
+    sr_status = Column(Enum(*[e.value for e in StaffRoleStatus]), default=StaffRoleStatus.ACTIVE.value)
 
     staff = relationship("StaffDetails", back_populates="staff_roles_staff")
     role = relationship("RoleDetails", back_populates="staff_roles_role")

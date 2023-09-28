@@ -16,7 +16,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.StaffDetailsRequest, status_code=201)
+@router.post("/", response_model=schemas.StaffDetailsResponse, status_code=201)
 def create_staff_details(*, db: Session = Depends(get_db), payload: schemas.StaffDetailsRequest):
     role = crud.create_staff_details(db=db, payload=payload)
     print(role.__dict__)

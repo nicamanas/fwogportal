@@ -9,7 +9,7 @@ from enum import Enum
 
 class SysRoleEnum(str, Enum):
     staff = "staff"
-    hr = "hr"
+    hr = "hr" 
     manager = "manager"
     inactive = "inactive"
 
