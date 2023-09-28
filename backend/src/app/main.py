@@ -1,14 +1,16 @@
 from fastapi import FastAPI
 
-from app.roles import ping, roles
-from app.roles.models import Base
-from app.db import engine, SessionLocal
-from .set_up.db_prestart import init_db
+from app.api import ping, rolelistings, lms
+from app.core.models import Base
+from app.core.database import engine, SessionLocal
+# from .set_up.db_prestart import init_db
+#TODO: Edit presetup 
 
 Base.metadata.create_all(bind=engine)
 db = SessionLocal()
-init_db(db)
+# init_db(db)
 app = FastAPI()
 
 app.include_router(ping.router)
-app.include_router(roles.router, prefix="/roles", tags=["roles"])
+# app.include_router(rolelistings.router, prefix="/rolelistings", tags=["rolelistings"])
+app.include_router(lms.router, prefix="/lms", tags=["lms"])
