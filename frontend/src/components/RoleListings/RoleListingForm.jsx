@@ -1,33 +1,100 @@
 import React, { useState , useEffect} from 'react';
-import { Box, Button, InputLabel, FormControl, MenuItem, Select, TextField, Grid, Container, Typography } from '@mui/material';
+import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 
 function RoleListingForm() {
 
-    const [formData, setFormData] = useState({
-        role_id: '',
-        role_listing_desc: '',
-        role_listing_source: '',
+    const initialFormData = {
+        role_id: "",
+        role_listing_desc: "",
+        role_listing_source: "",
         role_listing_open: new Date().toISOString().slice(0, 10),
         role_listing_close: new Date(Date.now() + 12096e5).toISOString().slice(0, 10), // default to two weeks later
-    });
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        if (name === "role_id") {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: parseInt(value, 10)
+            }));
+        } else {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
     }
 
-    const handleSubmit = (e) => {
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
+
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Call the API to save the new role listing or any other logic
+        // Fields needed to post
+        // {
+        //     "role_listing_id": 0, (TO ADD!)
+        //     "role_id": 0, (FORM DATA)
+        //     "role_listing_desc": "string", (FORM DATA)
+        //     "role_listing_source": 0, (FORM DATA)
+        //     "role_listing_open": "2023-09-28T14:47:18.231Z", (FORM DATA)
+        //     "role_listing_close": "2023-09-28T14:47:18.231Z", (FORM DATA)
+        //     "role_listing_creator": 0, (TO ADD!)
+        //     "role_listing_updater": 0
+        // }
+        formData.role_listing_open = `${formData.role_listing_open}T00:00:00.000Z`;
+        formData.role_listing_close = `${formData.role_listing_close}T00:00:00.000Z`;
+        
+        const generateId = () => Math.floor(Math.random() * 1000000) + 50;  
+
+        // Add additional data
+        const roleListing = {
+            ...formData,
+            role_listing_id: generateId(), // TODO: Check what kind of role listing is needed
+            role_listing_creator: 2 //TODO: Get the staff ID of the user who is logged in
+        };
+
+        console.log(roleListing);
+
+        try {
+            const response = await fetch("http://localhost:8003/rolelistings/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(roleListing)
+            });
+
+            const responseData = await response.json();
+
+            if (!response.ok) {
+                console.error("Error posting data with status:", response.status, responseData);
+            } else {
+                setOpenSnackbar(true);
+                setFormData(initialFormData); 
+            }
+        } catch (error) {
+            console.error("Error posting data:", error);
+        }
     }
 
     const [roles, setRoles] = useState([]);
 
     useEffect(() => {
-        fetch('/api/roles')  // TODO: Adjust URL according to backend API endpoint
+        fetch("http://localhost:8003/ljps/role_details/")  
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -44,6 +111,21 @@ function RoleListingForm() {
 
     return (
         <Container maxWidth="md" sx={{backgroundColor:'white', mt: 7, p: 1}}>
+            <div style={{ position: 'relative', height: '40px' }}>
+            <Snackbar 
+            open={openSnackbar}
+            autoHideDuration={6000} 
+            style={{ position: "absolute", top: "35px", left: "50%", transform: "translateX(-50%)"}}
+            onClose={handleCloseSnackbar}>
+                <Alert 
+                onClose={handleCloseSnackbar} 
+                severity="success" 
+                sx={{ width: '100%' }}>
+                    Role listing created!
+                </Alert>
+            </Snackbar>
+            </div>
+
             <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>
                 <img src="src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
                 Create New Role Listing
@@ -54,31 +136,20 @@ function RoleListingForm() {
                     <FormControl fullWidth sx={{m: 1}}>
                         <InputLabel id="role_id">Role name</InputLabel>
                         <Select
+                            name="role_id"
                             required
                             labelId="role_id"
                             id="role_id"
                             value={formData.role_id}
                             label="Role"
-                            onChange={handleInputChange}>
-                            <MenuItem value={"Test1"}>Scum master</MenuItem>
-                            <MenuItem value={"Test2"}>Code monkey</MenuItem>
-                        </Select>
-                        {/* Code for dynamic stuffers
-                        <Select
-                            required
-                            labelId="role_id"
-                            id="role_id"
-                            value={formData.role_listing_id}
-                            label="Role"
                             onChange={handleInputChange}
                         >
                             {roles.map(role => (
-                                <MenuItem key={role.id} value={role.id}>
-                                    {role.name}
+                                <MenuItem key={role.role_id} value={role.role_id}>
+                                    {role.role_name}
                                 </MenuItem>
                             ))}
                         </Select>
-                            */}
                     </FormControl>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <TextField
@@ -125,6 +196,7 @@ function RoleListingForm() {
                             required
                             name="role_listing_source"
                             label="Role Listing Source"
+                            placeholder="Enter the staff ID of the person who shared this role listing"
                             value={formData.role_listing_source}
                             onChange={handleInputChange}
                         />

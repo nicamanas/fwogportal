@@ -8,6 +8,7 @@ export type Path =
   | `/createlisting`
   | `/rolelistings`
   | `/rolelistings/:id`
+  | `/template`
 
 export type Params = {
   '/rolelistings/:id': { id: string }
