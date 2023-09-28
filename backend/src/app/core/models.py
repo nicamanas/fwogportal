@@ -54,7 +54,7 @@ class StaffDetails(Base):
     email = Column(String(50))  
     phone = Column(String(20))
     biz_address = Column(String(255))
-    sys_role = Column(Enum(StaffSysRole), default=StaffSysRole.staff.value)
+    sys_role = Column(Enum(*[e.value for e in StaffSysRole]), default=StaffSysRole.staff.value)
 
     staff_reporting_officer_staff = relationship("StaffReportingOfficer", back_populates="staff", primaryjoin='and_(StaffDetails.staff_id == StaffReportingOfficer.staff_id)')
     staff_reporting_officer_officer = relationship("StaffReportingOfficer", back_populates="reporting_officer", primaryjoin='and_(StaffDetails.staff_id == StaffReportingOfficer.RO_id)')

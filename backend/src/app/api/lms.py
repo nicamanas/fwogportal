@@ -22,7 +22,7 @@ def create_staff_details(*, db: Session = Depends(get_db), payload: schemas.Staf
     print(role.__dict__)
     return role
 
-@router.get("/", response_model=List[schemas.StaffDetailsRequest])
+@router.get("/", response_model=List[schemas.StaffDetailsResponse])
 def get_all_staff_details(db: Session = Depends(get_db)):
     return crud.get_all_staff_details(db=db)
 

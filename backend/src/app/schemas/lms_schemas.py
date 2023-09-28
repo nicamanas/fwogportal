@@ -21,6 +21,10 @@ class StaffDetailsRequest(BaseModel):
     email: str
     phone: str
     biz_address: str
-    sys_role: SysRoleEnum = SysRoleEnum.staff
+    sys_role: SysRoleEnum
+
+class StaffDetailsResponse(StaffDetailsRequest):
+    class Config: 
+        orm_mode = True
 
     
