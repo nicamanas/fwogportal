@@ -16,13 +16,13 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/", response_model=schemas.StaffDetailsResponse, status_code=201)
+@router.post("/staff_details/", response_model=schemas.StaffDetailsResponse, status_code=201)
 def create_staff_details(*, db: Session = Depends(get_db), payload: schemas.StaffDetailsRequest):
     role = crud.create_staff_details(db=db, payload=payload)
     print(role.__dict__)
     return role
 
-@router.get("/", response_model=List[schemas.StaffDetailsResponse])
+@router.get("/staff_details/", response_model=List[schemas.StaffDetailsResponse])
 def get_all_staff_details(db: Session = Depends(get_db)):
     return crud.get_all_staff_details(db=db)
 

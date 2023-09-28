@@ -12,6 +12,6 @@ db = SessionLocal()
 app = FastAPI()
 
 app.include_router(ping.router)
-# app.include_router(rolelistings.router, prefix="/rolelistings", tags=["rolelistings"])
+app.include_router(rolelistings.router, prefix="/rolelistings", tags=["rolelistings"])
 app.include_router(lms.router, prefix="/lms", tags=["lms"])
 app.include_router(ljps.router, prefix="/ljps", tags=["ljps"])

@@ -185,27 +185,17 @@ class RoleListings(Base):
     role_listing_close = Column(DateTime, default=datetime.utcnow() + timedelta(weeks=2))
     # system generated fields
     role_listing_creator = Column(Integer, ForeignKey('staff_details.staff_id'))
-    role_listing_ts_create = Column(DateTime, default=func.now())
+    role_listing_ts_create = Column(DateTime(timezone=True), default=func.now())
     role_listing_updater = Column(Integer, ForeignKey('staff_details.staff_id'))
-    role_listing_ts_update = Column(DateTime, default=func.now())
+    #update time automatically
+    role_listing_ts_update = Column(DateTime(timezone=True), onupdate=func.now())
 
     role_role_id = relationship("RoleDetails", back_populates="role_listings_role_id")
     staff_details_source = relationship("StaffDetails", back_populates="role_listings_source", primaryjoin='and_(RoleListings.role_listing_source == StaffDetails.staff_id)')
     staff_details_creator = relationship("StaffDetails", back_populates="role_listings_creator", primaryjoin='and_(RoleListings.role_listing_creator == StaffDetails.staff_id)')
     staff_details_updater = relationship("StaffDetails", back_populates="role_listings_updater", primaryjoin='and_(RoleListings.role_listing_updater == StaffDetails.staff_id)')
 
-    def __init__(self, role_listing_id, role_id, role_listing_desc, role_listing_source, role_listing_open, role_listing_close, role_listing_creator, role_listing_ts_create, role_listing_updater, role_listing_ts_update):
-        self.role_listing_id = role_listing_id
-        self.role_id = role_id
-        self.role_listing_desc = role_listing_desc
-        self.role_listing_source = role_listing_source
-        self.role_listing_open = role_listing_open
-        self.role_listing_close = role_listing_close
-        # system generated fields
-        self.role_listing_creator = role_listing_creator
-        self.role_listing_ts_create = role_listing_ts_create # should not insert if role_listing is being updated
-        self.role_listing_updater = role_listing_updater
-        self.role_listing_ts_update = role_listing_ts_update
+
     
 
     
