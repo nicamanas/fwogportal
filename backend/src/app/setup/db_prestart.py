@@ -1,6 +1,6 @@
 import logging
 from sqlalchemy.orm import Session
-from app.setup.preloaded_data import skill_details, role_details, role_skills, staff_details
+from app.setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings
 from app.crud import ljps_crud, lms_crud, rolelistings_crud
 from app.schemas import ljps_schemas, lms_schemas, sbrp_schemas
 
@@ -35,6 +35,14 @@ def init_db(db: Session) -> None:
         for staff_detail in staff_details.DEFAULT_STAFF_DETAILS:
             in_staff_details = lms_schemas.StaffDetailsRequest(**staff_detail)
             lms_crud.create_staff_details(payload=in_staff_details, db=db)
+
+    all_role_listings = rolelistings_crud.get_all_role_listings(db=db)
+    if not all_role_listings:
+        logger.info("Creating default role_listings")
+        for role_listing in role_listings.DEFAULT_ROLE_LISTINGS:
+            in_role_listing = sbrp_schemas.RoleListingsRequest(**role_listing)
+            rolelistings_crud.create_role_listing(payload=in_role_listing, db=db)
+
     
     
 
