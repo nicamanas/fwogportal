@@ -5,28 +5,30 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-type RoleListingCardProps = {
-  title: String
-  description: String
+type RoleListing = {
+  role_name: String
+  role_listing_desc: String
   skills: String[]
-  deadline: String
+  role_listing_close: String
 }
 
+type RoleListingCardProps = {
+  roleListing: RoleListing
+}
 
-
-export default function RoleListingCard({ title, description, skills, deadline } : RoleListingCardProps) {
-  
-
+export default function RoleListingCard({ roleListing } : RoleListingCardProps) {
+  const { role_name, role_listing_desc, skills, role_listing_close } = roleListing;
+  console.log(roleListing)
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {title}
+            {role_name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            {role_listing_desc}
           </Typography>
           {
             skills.map((skill) => {
@@ -34,7 +36,7 @@ export default function RoleListingCard({ title, description, skills, deadline }
             })
           }
           <Typography variant="body2" color="text.secondary">
-            {deadline}
+            {role_listing_close}
           </Typography>
         </CardContent>
       </CardActionArea>

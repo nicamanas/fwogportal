@@ -21,7 +21,7 @@ class RoleListingsResponse(RoleListingsRequest):
     dept: str
     role_name: str
     role_description: str
-    skill_name: List[str]
+    skills: List[str]
 
     class Config:
         orm_mode = True

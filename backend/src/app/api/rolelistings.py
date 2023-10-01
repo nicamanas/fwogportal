@@ -41,7 +41,7 @@ def transform_and_aggregate_rolelistings(results):
             "dept": dept,
             "role_name": role_name,
             "role_description": role_description,
-            "skill_name": skills  # This is a list
+            "skills": skills  # This is a list
         }
 
     return [transform_grouped_result(key, skills) for key, skills in role_grouped.items()]
