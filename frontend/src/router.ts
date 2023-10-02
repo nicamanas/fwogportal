@@ -12,7 +12,7 @@ export type Path =
   | `/template`
 
 export type Params = {
-  '/rolelistings/:id': { id: string }
+  '/rolelistings/:id': { id: number }
 }
 
 export type ModalPath = never

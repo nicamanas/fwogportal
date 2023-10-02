@@ -5,8 +5,10 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import { useNavigate } from "../router";
 
 type RoleListing = {
+  role_listing_id: number
   role_name: string
   role_listing_desc: string
   skills: string[]
@@ -18,13 +20,15 @@ type RoleListingCardProps = {
 }
 
 export default function RoleListingCard({ roleListing } : RoleListingCardProps) {
-  const { role_name, role_listing_desc, skills, role_listing_close } = roleListing;
+  const { role_listing_id, role_name, role_listing_desc, skills, role_listing_close } = roleListing;
   const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  
+  const navigate = useNavigate();
+  const handleClick = () => navigate("/rolelistings/:id", { params: { id: role_listing_id } });
+
 
   return (
     <Card sx={{height: '300px'}}>
-      <CardActionArea sx={{height: "100%", p: 2}}>
+      <CardActionArea sx={{height: "100%", p: 2}} onClick={handleClick}>
         <Grid container justifyItems="space-between" sx={{height: "100%"}}>
           <Grid item>
             <Typography gutterBottom variant="h5" component="div">

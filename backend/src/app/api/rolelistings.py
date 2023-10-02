@@ -61,3 +61,9 @@ def get_all_role_listings(db: Session = Depends(get_db)):
     print(raw_results)
     return transform_and_aggregate_rolelistings(raw_results)
 
+@router.get("/{id}", response_model=schemas.RoleListingsResponse)
+def get_role_listing_by_id(db: Session = Depends(get_db), id: int = Path(..., gt=0)):
+    role = crud.get_role_listing_by_id(db=db, id=id)
+    print("Test==============================================")
+    print(role)
+    return transform_and_aggregate_rolelistings(role)[0]
