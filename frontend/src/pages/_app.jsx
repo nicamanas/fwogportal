@@ -11,7 +11,7 @@ export default function App() {
         <ResponsiveAppBar/>
       </header>
       
-      <main style={{ margin: 20 }}>
+      <main style={{ margin: 30 }}>
         <Outlet/>
       </main>
 

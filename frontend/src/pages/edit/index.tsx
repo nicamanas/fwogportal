@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+import { red } from '@mui/material/colors';
 
 
 const columns = [
@@ -129,6 +131,9 @@ export default function EditListings() {
                   {column.label}
                 </TableCell>
               ))}
+              <TableCell key="edit" align="right" style={{ minWidth: 100 }}>
+                Edit/Delete
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -147,6 +152,10 @@ export default function EditListings() {
                         </TableCell>
                       );
                     })}
+                    <TableCell>
+                      <Button variant="contained" color="primary">Edit</Button>
+                      <Button variant="contained" color="warning">Delete</Button>
+                    </TableCell>
                   </TableRow>
                 );
               })}
