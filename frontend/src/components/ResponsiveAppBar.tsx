@@ -27,7 +27,9 @@ export default function ResponsiveAppBar() {
 
   const pageRoutes: PageRoutes = {
     Home: () => navigate("/"),
+    "Edit Listings": () => navigate("/edit"),
     "Create Listing": () => navigate("/createlisting"),
+    
   };
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
