@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
-import { red } from '@mui/material/colors';
+import { RoleListingAPI } from '../../apis/roleListingAPI.js'
 
 
 const columns = [
@@ -101,11 +101,15 @@ const rows = [
   }
 ]
 
-
-
 export default function EditListings() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [roleListings, setRoleListings] = useState<RoleListing[]>([]);
+  useEffect(() => {
+    RoleListingAPI.getAll().then((rolelistings: RoleListing[]) => {
+      setRoleListings(rolelistings);
+    })
+  }, [])
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -118,7 +122,7 @@ export default function EditListings() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 1000 }}>
+      <TableContainer >
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -137,11 +141,11 @@ export default function EditListings() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {roleListings
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.role_listing_id}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -165,7 +169,7 @@ export default function EditListings() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={roleListings.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
