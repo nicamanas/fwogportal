@@ -4,15 +4,17 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
+
 class RoleListingsRequest(BaseModel):
     role_listing_id: int
-    role_id: int 
-    role_listing_desc: str 
+    role_id: int
+    role_listing_desc: str
     role_listing_source: int
     role_listing_open: datetime
     role_listing_close: datetime
     role_listing_creator: int
-    role_listing_updater: Optional[int] = None 
+    role_listing_updater: Optional[int] = None
+
 
 class RoleListingsResponse(RoleListingsRequest):
     role_listing_ts_create: datetime
@@ -22,6 +24,15 @@ class RoleListingsResponse(RoleListingsRequest):
     role_name: str
     role_description: str
     skills: List[str]
+
+    class Config:
+        orm_mode = True
+
+
+class SkillDetails(BaseModel):
+    skill_id: int
+    skill_name: str
+    skill_status: str
 
     class Config:
         orm_mode = True

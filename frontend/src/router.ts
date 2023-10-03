@@ -10,9 +10,10 @@ export type Path =
   | `/rolelistings`
   | `/rolelistings/:id`
   | `/template`
+  | `/viewfilterlistings`
 
 export type Params = {
-  '/rolelistings/:id': { id: number }
+  '/rolelistings/:id': { id: string }
 }
 
 export type ModalPath = never
