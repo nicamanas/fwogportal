@@ -46,6 +46,7 @@ export default function RoleListingCard({ roleListing } : RoleListingCardProps) 
                 })
               }
             </Grid>
+            
             <Typography variant="body2" color="text.secondary">
               Closing date: {formattedClosing}
             </Typography>
