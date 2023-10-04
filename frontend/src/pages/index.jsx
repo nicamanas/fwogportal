@@ -9,7 +9,7 @@ export default function Home() {
   const [roleListings, setRoleListings] = useState([])
 
   useEffect(() => {
-    RoleListingAPI.getAll().then((rolelistings) => {
+    RoleListingAPI.getAllOpen().then((rolelistings) => {
       setRoleListings(rolelistings);
     })
   }, [])

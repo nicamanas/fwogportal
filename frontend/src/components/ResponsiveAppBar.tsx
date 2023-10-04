@@ -28,7 +28,7 @@ export default function ResponsiveAppBar() {
 	const pageRoutes: PageRoutes = {
 		Home: () => navigate("/"),
 		"View Listings": () => navigate("/viewfilterlistings"),
-		"Edit Listings": () => navigate("/edit"),
+		"Admin Panel": () => navigate("/admin"),
 		"Create Listing": () => navigate("/createlisting"),
 	}
 

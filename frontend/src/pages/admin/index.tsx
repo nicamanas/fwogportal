@@ -101,7 +101,7 @@ const rows = [
   }
 ]
 
-export default function EditListings() {
+export default function AdminPanel() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [roleListings, setRoleListings] = useState<RoleListing[]>([]);
