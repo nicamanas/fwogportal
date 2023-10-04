@@ -1,18 +1,25 @@
 import React, { useState , useEffect} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import { useNavigate } from '../../router';
+import { useNavigate } from '../router';
+import { RoleListingAPI } from '../apis/rolelistingAPI';
 
-function RoleListingForm() {
+export default function EditRoleListingForm({roleListing}) {
+    const { role_id, role_listing_desc, role_listing_source, role_listing_open, role_listing_close, role_listing_id } = roleListing;
     const navigate = useNavigate();
+    const getRoleListingClose = (role_listing_close) => {
+      const closeDate = new Date(role_listing_close);
+      closeDate.setDate(closeDate.getDate() + 1);
+      return closeDate.toISOString().slice(0,10);
+    }
     const initialFormData = {
-        role_id: "",
-        role_listing_desc: "",
-        role_listing_source: "",
-        role_listing_open: new Date().toISOString().slice(0, 10),
-        role_listing_close: new Date(Date.now() + 12096e5).toISOString().slice(0, 10), // default to two weeks later
+        role_listing_id,
+        role_id,
+        role_listing_desc,
+        role_listing_source,
+        role_listing_open: new Date(role_listing_open).toISOString().slice(0, 10),
+        role_listing_close: getRoleListingClose(role_listing_close), 
     };
-
     const [formData, setFormData] = useState(initialFormData);
     const [snackbarMsg, setSnackBarMsg] = useState("");
 
@@ -65,37 +72,49 @@ function RoleListingForm() {
         // Add additional data
         const roleListing = {
             ...formData,
-            role_listing_id: generateId(), // TODO: Check what kind of role listing is needed
             role_listing_creator: 2 //TODO: Get the staff ID of the user who is logged in
         };
 
         console.log(roleListing);
 
-        try {
-            const response = await fetch("http://localhost:8003/rolelistings/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(roleListing)
-            });
+        RoleListingAPI.update(role_listing_id, roleListing)
+          .then((roleListing) => {
+            setFormData(initialFormData); 
+            setSnackBarMsg("Successfully edited listing! Bringing you there...");
+            setTimeout(() => {
+              navigate("/rolelistings/:id", { params: { id: roleListing.role_listing_id } });
+            }, 1500)
+          })
+          .catch((error) => {
+            console.error(error);
+            setSnackBarMsg("Error editing role listing!");
+          })
+          .finally(() => setOpenSnackbar(true));
+        // try {
+        //     const response = await fetch("http://localhost:8003/rolelistings/", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify(roleListing)
+        //     });
 
-            const responseData = await response.json();
+        //     const responseData = await response.json();
 
-            if (!response.ok) {
-                console.error("Error posting data with status:", response.status, responseData);
-                setSnackBarMsg("Error creating role listing!");
-            } else {
-                setSnackBarMsg("Role listing created! Bringing you there...")
-                setFormData(initialFormData); 
-                setTimeout(() => {
-                  navigate("/rolelistings/:id", { params: { id: responseData.role_listing_id } });
-                }, 1500)
-            }
-            setOpenSnackbar(true);
-        } catch (error) {
-            console.error("Error posting data:", error);
-        }
+        //     if (!response.ok) {
+        //         console.error("Error posting data with status:", response.status, responseData);
+        //         setSnackBarMsg("Error creating role listing!");
+        //     } else {
+        //         setSnackBarMsg("Role listing edited! Bringing you there...")
+        //         setFormData(initialFormData); 
+        //         setTimeout(() => {
+        //           navigate("/rolelistings/:id", { params: { id: responseData.role_listing_id } });
+        //         }, 1500)
+        //     }
+        //     setOpenSnackbar(true);
+        // } catch (error) {
+        //     console.error("Error posting data:", error);
+        // }
     }
 
     const [roles, setRoles] = useState([]);
@@ -134,8 +153,8 @@ function RoleListingForm() {
             </div>
 
             <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>
-                <img src="src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
-                Create New Role Listing
+                <img src="/src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
+                Edit Role Listing
             </Typography>
             
             <form onSubmit={handleSubmit}>
@@ -218,5 +237,3 @@ function RoleListingForm() {
             </Container>
     );
 }
-
-export default RoleListingForm;

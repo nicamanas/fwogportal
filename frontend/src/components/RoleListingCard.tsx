@@ -21,9 +21,9 @@ type RoleListingCardProps = {
 
 export default function RoleListingCard({ roleListing } : RoleListingCardProps) {
   const { role_listing_id, role_name, role_listing_desc, skills, role_listing_close } = roleListing;
-  const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-SG', { day: 'numeric', month: 'long', year: 'numeric' })
   const navigate = useNavigate();
-  const handleClick = () => navigate("/rolelistings/:id", { params: { id: role_listing_id } });
+  const handleClick = () => navigate("/rolelistings/:id", { params: { id: role_listing_id.toString() } });
 
 
   return (

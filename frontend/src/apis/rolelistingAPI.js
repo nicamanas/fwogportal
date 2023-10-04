@@ -55,6 +55,29 @@ export const RoleListingAPI = {
     } catch (error) {
         console.error("Error fetching open role listings:", error);
     }
+  },
+  update: async function (id, roleListing) {
+    console.log(`http://localhost:8003/rolelistings/${id}`)
+    try {
+      const response = await fetch(`http://localhost:8003/rolelistings/${id}`, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(roleListing)
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error("Error posting data with status:", response.status, responseData)
+      } else {
+        return responseData;
+      }
+      
+    } catch (error) {
+      throw new Error("Error posting data:", error);
+    }
   }
 
 } 

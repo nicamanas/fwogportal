@@ -74,3 +74,15 @@ def get_role_listing_by_id(db: Session = Depends(get_db), id: int = Path(..., gt
     print("Test==============================================")
     print(role)
     return transform_and_aggregate_rolelistings(role)[0]
+
+@router.put("/{id}", response_model=schemas.RoleListingsResponse)
+def update_role_listing_by_id(payload: schemas.RoleListingsRequest, db: Session = Depends(get_db), id: int = Path(..., gt=0),):
+    print("Payload")
+    print(payload)
+    role_listing = crud.get_role_listing_table_by_id(db=db, id=id)
+    if not role_listing:
+        raise HTTPException(status_code=404, detail="Role Listing not found")
+    role_listing = crud.update_role_listing(db=db, payload=payload, role_listing=role_listing)
+    print("Test==============================================")
+    print(role_listing)
+    return transform_and_aggregate_rolelistings(role_listing)[0]

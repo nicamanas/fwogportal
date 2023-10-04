@@ -26,7 +26,7 @@ type IndividualRoleListingProps = {
 
 export default function IndividualRoleListing({ roleListing } : IndividualRoleListingProps) {
   const { role_listing_id, role_name, role_listing_desc, role_description, skills, role_listing_close, dept } = roleListing;
-  const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-SG', { year: 'numeric', month: 'long', day: 'numeric' });
   return (
     <Card variant="outlined" style={{ maxWidth: '1000px', margin: '20px auto',}}>
       <CardContent>

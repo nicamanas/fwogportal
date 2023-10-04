@@ -6,6 +6,7 @@ import { components, hooks, utils } from '@generouted/react-router/client'
 export type Path =
   | `/`
   | `/admin`
+  | `/admin/edit/:id`
   | `/createlisting`
   | `/rolelistings`
   | `/rolelistings/:id`
@@ -13,6 +14,7 @@ export type Path =
   | `/viewfilterlistings`
 
 export type Params = {
+  '/admin/edit/:id': { id: string }
   '/rolelistings/:id': { id: string }
 }
 
