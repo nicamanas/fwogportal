@@ -1,9 +1,10 @@
 import React, { useState , useEffect} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import { useNavigate } from '../../router';
 
 function RoleListingForm() {
-
+    const navigate = useNavigate();
     const initialFormData = {
         role_id: "",
         role_listing_desc: "",
@@ -13,6 +14,7 @@ function RoleListingForm() {
     };
 
     const [formData, setFormData] = useState(initialFormData);
+    const [snackbarMsg, setSnackBarMsg] = useState("");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -82,10 +84,15 @@ function RoleListingForm() {
 
             if (!response.ok) {
                 console.error("Error posting data with status:", response.status, responseData);
+                setSnackBarMsg("Error creating role listing!");
             } else {
-                setOpenSnackbar(true);
+                setSnackBarMsg("Role listing created! Bringing you there...")
                 setFormData(initialFormData); 
+                setTimeout(() => {
+                  navigate("/rolelistings/:id", { params: { id: responseData.role_listing_id } });
+                }, 3000)
             }
+            setOpenSnackbar(true);
         } catch (error) {
             console.error("Error posting data:", error);
         }
@@ -121,7 +128,7 @@ function RoleListingForm() {
                 onClose={handleCloseSnackbar} 
                 severity="success" 
                 sx={{ width: '100%' }}>
-                    Role listing created!
+                    {snackbarMsg}
                 </Alert>
             </Snackbar>
             </div>
