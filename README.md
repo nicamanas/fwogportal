@@ -11,10 +11,8 @@ An in-depth paragraph about your project and overview of use.
 ### Dependencies
 
 * Docker
-
-### Installing
-
-* 
+* Node.js
+* npm
 
 ### Starting frontend
 
@@ -59,14 +57,6 @@ docker-compose down -v
 http://localhost:8003/docs
 ```
 
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
 ## Authors
 
 Contributors names and contact info
@@ -76,11 +66,3 @@ Esther
 Nicholas
 Steph
 Thaddeus
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
