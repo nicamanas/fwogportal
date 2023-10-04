@@ -15,7 +15,7 @@ export default function ViewFilterRoleListing() {
     const [filteredRoleListings, setFilteredRoleListings] = useState([])
 
     useEffect(() => {
-        RoleListingAPI.getAll().then((rolelistings) => {
+        RoleListingAPI.getAllOpen().then((rolelistings) => {
             setRoleListings(rolelistings);
             setFilteredRoleListings(rolelistings);
         })
