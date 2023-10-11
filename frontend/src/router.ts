@@ -8,6 +8,7 @@ export type Path =
   | `/admin`
   | `/admin/edit/:id`
   | `/createlisting`
+  | `/createskill`
   | `/rolelistings`
   | `/rolelistings/:id`
   | `/template`

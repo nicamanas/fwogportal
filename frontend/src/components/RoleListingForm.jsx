@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import { useNavigate } from '../../router';
+import { useNavigate } from '../router';
 
 function RoleListingForm() {
     const navigate = useNavigate();
@@ -60,7 +60,7 @@ function RoleListingForm() {
         formData.role_listing_open = `${formData.role_listing_open}T00:00:00.000Z`;
         formData.role_listing_close = `${formData.role_listing_close}T00:00:00.000Z`;
         
-        const generateId = () => Math.floor(Math.random() * 1000000) + 50;  
+        const generateId = () => Math.floor(Math.random() * 1000000);  
 
         // Add additional data
         const roleListing = {
@@ -160,7 +160,6 @@ function RoleListingForm() {
                     </FormControl>
                     <FormControl fullWidth sx={{ m: 1 }}>
                         <TextField
-                            required
                             name="role_listing_desc"
                             label="Role Listing Description"
                             fullWidth

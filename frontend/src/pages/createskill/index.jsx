@@ -1,13 +1,13 @@
 import React from 'react';
-import RoleListingForm from '../../components/RoleListingForm';
+import SkillCreateForm from '../../components/SkillCreateForm';
 
-function CreateRoleListing() {
+function CreateSkill() {
 
     return (
         <div sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-            <RoleListingForm />
+            <SkillCreateForm/>
         </div>
     );
 }
 
-export default CreateRoleListing;
+export default CreateSkill;

@@ -52,7 +52,7 @@ export default function ResponsiveAppBar() {
 	}
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static" sx={{backgroundColor:"#7d86d9"}}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<AdbIcon
