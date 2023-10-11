@@ -14,16 +14,30 @@ import MenuItem from "@mui/material/MenuItem"
 import AdbIcon from "@mui/icons-material/Adb"
 
 import { Link, useModals, useNavigate, useParams } from "../router"
+// import { UserStorage } from '../utils/userLocalStorageUtils.js';
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"]
 
 type PageRoutes = {
+	[key: string]: () => void
+}
+
+type SettingsRoutes = {
 	[key: string]: () => void
 }
 
 export default function ResponsiveAppBar() {
 	const navigate = useNavigate()
 	const modals = useModals()
+
+	// const settings: SettingsRoutes = {
+	// 	Profile: () => () => {},
+	// 	Account: () => () => {},
+	// 	Dashboard: () => () => {},
+	// 	Logout: () => {
+			
+	// 	}
+	// } 
+	const settings = ['profile', 'account', 'dashboard', 'logout']
 
 	const pageRoutes: PageRoutes = {
 		Home: () => navigate("/"),
