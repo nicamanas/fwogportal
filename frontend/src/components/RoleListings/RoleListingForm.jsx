@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react';
-import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
+import {Box, Button, InputLabel, FormControl, MenuItem, Select, TextField, Container, Typography } from '@mui/material';
 import { useNavigate } from '../../router';
+import CustomSnackbar from '../CustomSnackbar';
 
 function RoleListingForm() {
     const navigate = useNavigate();
@@ -30,10 +30,6 @@ function RoleListingForm() {
             }));
         }
     }
-
-    const Alert = React.forwardRef(function Alert(props, ref) {
-        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    });
 
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -118,20 +114,11 @@ function RoleListingForm() {
 
     return (
         <Container maxWidth="md" sx={{backgroundColor:'white', mt: 7, p: 1}}>
-            <div style={{ position: 'relative', height: '40px' }}>
-            <Snackbar 
-            open={openSnackbar}
-            autoHideDuration={6000} 
-            style={{ position: "absolute", top: "35px", left: "50%", transform: "translateX(-50%)"}}
-            onClose={handleCloseSnackbar}>
-                <Alert 
-                onClose={handleCloseSnackbar} 
-                severity="success" 
-                sx={{ width: '100%' }}>
-                    {snackbarMsg}
-                </Alert>
-            </Snackbar>
-            </div>
+          <CustomSnackbar
+            openSnackbar={openSnackbar}
+            handleCloseSnackbar={handleCloseSnackbar}
+            snackbarMsg={snackbarMsg}
+          />
 
             <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>
                 <img src="src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
