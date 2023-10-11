@@ -3,8 +3,10 @@ import { Container, Typography, TextField, Button, Grid, IconButton, InputAdornm
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import CustomSnackbar from './CustomSnackbar';
 import { UserStorage } from '../utils/userLocalStorageUtils';
+import { useNavigate } from '../router';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -65,6 +67,7 @@ export default function LoginPage() {
         setOpenSnackbar(true);
         setSnackBarMsg("Login successful");
         UserStorage.addUser(loginInfo[username]);
+        navigate(0);
       } else {
         setErrMsg("Incorrect password");
       }

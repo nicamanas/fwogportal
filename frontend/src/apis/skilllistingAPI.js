@@ -2,7 +2,7 @@ export const SkillListingAPI = {
 	getAll: async function () {
 		try {
 			const response = await fetch(
-				"http://localhost:8003/skilllistings/",
+				"http://localhost:8003/ljps/skill_details",
 				{
 					method: "GET",
 					headers: {

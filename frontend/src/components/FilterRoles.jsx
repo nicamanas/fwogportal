@@ -3,7 +3,8 @@ import {
   Autocomplete,
   Button,
   Box,
-  Container,
+  Chip,
+  Grid,
   FormControl,
   Stack,
   TextField,
@@ -29,46 +30,51 @@ export default function FilterRoles({
             height="50px"
           />
           <Typography variant="h6">Search Role Listings by Skills</Typography>
-
-          <Autocomplete
-            multiple
-            id="skill-search-bar"
-            freeSolo
-            options={skillListings.map(
-              (skill_option) => skill_option.skill_name
-            )}
-            renderTags={(value, getTagProps) =>
-              value.map((option, index) => (
-                <Chip
-                  variant="outlined"
-                  label={option}
-                  {...getTagProps({ index })}
-                />
-              ))
-            }
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Select Skills"
-                placeholder="Select Skills"
+          <Grid container direction="row" item>
+            <Grid item xs={9}>
+              <Autocomplete
+                multiple
+                id="skill-search-bar"
+                freeSolo
+                options={skillListings.map(
+                  (skill_option) => skill_option.skill_name
+                )}
+                renderTags={(value, getTagProps) =>
+                  value.map((option, index) => (
+                    <Chip
+                      variant="outlined"
+                      label={option}
+                      {...getTagProps({ index })}
+                    />
+                  ))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Select Skills"
+                    placeholder="Select Skills"
+                  />
+                )}
+                onChange={(event, value) => {
+                  setSelectedSkills(value);
+                  setFilteredRoleListings(roleListings);
+                }}
               />
-            )}
-            onChange={(event, value) => {
-              setSelectedSkills(value);
-              setFilteredRoleListings(roleListings);
-            }}
-          />
-          <FormControl>
-            <Button
-              type="submit"
-              size="large"
-              variant="contained"
-              sx={{ backgroundColor: "#7d86d9", paddingY: "14px" }}
-              disableElevation
-            >
-              Search
-            </Button>
-          </FormControl>
+            </Grid>
+            <Grid xs={3} textAlign="end">
+              <FormControl sx={{width: "96%"}}>
+                <Button
+                  type="submit"
+                  size="large"
+                  variant="contained"
+                  sx={{ backgroundColor: "#7d86d9", paddingY: "14px", width: "100%"}}
+                  disableElevation
+                >
+                  Search
+                </Button>
+              </FormControl>
+            </Grid>
+          </Grid>
         </Stack>
       </form>
     </Box>
