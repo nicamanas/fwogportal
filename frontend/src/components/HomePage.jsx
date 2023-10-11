@@ -55,8 +55,8 @@ export default function HomePage() {
         sx={{ mb:2 }}
       />
       <Grid container columnSpacing={6} rowSpacing={6}>
-        {roleListings.length > 0 &&
-          roleListings.map((roleListing, index) => (
+        {filteredRoleListings.length > 0 &&
+          filteredRoleListings.map((roleListing, index) => (
             <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={index}>
               <RoleListingCard roleListing={roleListing} />
             </Grid>

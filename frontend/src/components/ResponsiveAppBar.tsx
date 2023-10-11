@@ -39,7 +39,6 @@ export default function ResponsiveAppBar() {
 			navigate(0);
 		}
 	} 
-	// const settings = ['profile', 'account', 'dashboard', 'logout']
 
 	const pageRoutes: PageRoutes = {
 		Home: () => navigate("/"),
