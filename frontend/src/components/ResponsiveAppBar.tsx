@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem"
 import AdbIcon from "@mui/icons-material/Adb"
 
 import { Link, useModals, useNavigate, useParams } from "../router"
-// import { UserStorage } from '../utils/userLocalStorageUtils.js';
+import { UserStorage } from '../utils/userLocalStorageUtils.js';
 
 
 type PageRoutes = {
@@ -29,15 +29,17 @@ export default function ResponsiveAppBar() {
 	const navigate = useNavigate()
 	const modals = useModals()
 
-	// const settings: SettingsRoutes = {
-	// 	Profile: () => () => {},
-	// 	Account: () => () => {},
-	// 	Dashboard: () => () => {},
-	// 	Logout: () => {
-			
-	// 	}
-	// } 
-	const settings = ['profile', 'account', 'dashboard', 'logout']
+	const settings: SettingsRoutes = {
+		Profile: () => () => {},
+		Account: () => () => {},
+		Dashboard: () => () => {},
+		Logout: () => {
+			UserStorage.clearUser();
+			handleCloseNavMenu();
+			navigate(0);
+		}
+	} 
+	// const settings = ['profile', 'account', 'dashboard', 'logout']
 
 	const pageRoutes: PageRoutes = {
 		Home: () => navigate("/"),
@@ -197,10 +199,10 @@ export default function ResponsiveAppBar() {
 							}}
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}>
-							{settings.map((setting) => (
+							{Object.keys(settings).map((setting) => (
 								<MenuItem
 									key={setting}
-									onClick={handleCloseUserMenu}>
+									onClick={settings[setting]}>
 									<Typography textAlign="center">
 										{setting}
 									</Typography>
