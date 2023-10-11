@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Typography, TextField, Button, Grid, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import CustomSnackbar from './CustomSnackbar';
+import { UserStorage } from '../utils/userLocalStorageUtils';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -26,17 +27,23 @@ export default function LoginPage() {
   };
 
   const loginInfo = {
-    "admin": {
-      "password": "password123",
-      "role": "admin"
-    },
-    "staff": {
-      "password": "123password",
-      "role": "staff"
+    staff: {
+      id: 1,
+      name: "Tan Ah Gao",
+      password: "123password",
+      sys_role: "staff"
     }, 
-    "manager": {
-      "password": "pass123word",
-      "role": "manager"
+    admin: {
+      id: 2,
+      name: "Vincent Rex Colins",
+      password: "password123",
+      sys_role: "admin"
+    },
+    manager: {
+      id: 3,
+      name: "Faud Nizam",
+      password: "pass123word",
+      sys_role: "manager"
     }
   }
 
@@ -57,6 +64,7 @@ export default function LoginPage() {
         setErrMsg("");
         setOpenSnackbar(true);
         setSnackBarMsg("Login successful");
+        UserStorage.addUser(loginInfo[username]);
       } else {
         setErrMsg("Incorrect password");
       }

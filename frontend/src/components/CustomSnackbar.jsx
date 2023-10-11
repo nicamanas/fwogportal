@@ -12,16 +12,16 @@ export default function CustomSnackbar(
   return (
     <div style={{ position: 'relative', height: '40px' }}>
       <Snackbar 
-      open={openSnackbar}
-      autoHideDuration={6000} 
-      style={{ position: "absolute", top: "35px", left: "50%", transform: "translateX(-50%)"}}
-      onClose={handleCloseSnackbar}>
-        <Alert 
-        onClose={handleCloseSnackbar} 
-        severity="success" 
-        sx={{ width: '100%' }}>
-            {snackbarMsg}
-        </Alert>
+        open={openSnackbar}
+        autoHideDuration={6000} 
+        style={{ position: "absolute", top: "35px", left: "50%", transform: "translateX(-50%)"}}
+        onClose={handleCloseSnackbar}>
+          <Alert 
+          onClose={handleCloseSnackbar} 
+          severity="success" 
+          sx={{ width: '100%' }}>
+              {snackbarMsg}
+          </Alert>
       </Snackbar>
       </div>
   )

@@ -1,13 +1,10 @@
-import { RoleListingAPI } from "../apis/rolelistingAPI";
-import RoleListingCard from "../components/RoleListingCard";
-import { useEffect, useState } from "react";
 import HomePage from "../components/HomePage";
-import Typography from "@mui/material/Typography";
 import LoginPage from "../components/LoginPage";
+import { UserStorage } from "../utils/userLocalStorageUtils";
 
 export default function Home() {
-  const mockUser = null;
-  if (mockUser == null) {
+  const user = UserStorage.getUser();
+  if (user == null) {
     return <LoginPage/>
   }
   return <HomePage></HomePage>
