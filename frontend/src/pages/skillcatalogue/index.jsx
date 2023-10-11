@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { SkillsAPI } from '../../apis/skillsreplicaAPI';
+import { SBRPSkillsAPI } from '../../apis/sbrpSkillsAPI';
 import { useNavigate } from '../../router.ts';
 
 const columns = [
@@ -27,9 +27,8 @@ function SkillsPanel() {
     const navigate = useNavigate();
   
     useEffect(() => {
-      SkillsAPI.getAll().then((fetchedSkills) => {
+      SBRPSkillsAPI.getAll().then((fetchedSkills) => {
         setSkills(fetchedSkills);
-        console.log(fetchedSkills)
       });
     }, []);
   

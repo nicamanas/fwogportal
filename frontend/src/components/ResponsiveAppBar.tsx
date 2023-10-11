@@ -42,9 +42,7 @@ export default function ResponsiveAppBar() {
 
 	const pageRoutes: PageRoutes = {
 		Home: () => navigate("/"),
-		"View Listings": () => navigate("/viewfilterlistings"),
-		"Edit Listings": () => navigate("/admin"),
-		"Create Listing": () => navigate("/createlisting"),
+		"Edit Listings": () => navigate("/editlistings"),
 		"Skill Catalogue": () => navigate("/skillcatalogue"),
 	}
 

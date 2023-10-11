@@ -1,4 +1,4 @@
-export const SkillsAPI = {
+export const SBRPSkillsAPI = {
     get: async function (id) {
         try {
             const response = await fetch(`http://localhost:8003/skills/${id}`, {

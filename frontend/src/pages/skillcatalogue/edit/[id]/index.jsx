@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { SkillsAPI } from '../../../../apis/skillsreplicaAPI';
+import { SBRPSkillsAPI } from '../../../../apis/sbrpSkillsAPI';
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 import EditSkillForm from '../../../../components/EditSkillForm.jsx'; 
@@ -10,7 +10,7 @@ export default function EditSkill() {
     const [skill, setSkill] = useState(null);
   
     useEffect(() => {
-        SkillsAPI.get(id).then((fetchedSkill) => {
+        SBRPSkillsAPI.get(id).then((fetchedSkill) => {
             setSkill(fetchedSkill);
         });
     }, []);

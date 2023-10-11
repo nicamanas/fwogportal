@@ -12,7 +12,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { SkillListingAPI } from "../apis/skilllistingAPI";
+import { LJPSSkillsAPI } from "../apis/ljpsSkillsAPI";
 import FilterRoles from "./FilterRoles";
 
 export default function HomePage() {
@@ -28,7 +28,7 @@ export default function HomePage() {
       setRoleListings(rolelistings);
       setFilteredRoleListings(rolelistings);
     });
-    SkillListingAPI.getAll().then((skillListings) => {
+    LJPSSkillsAPI.getAll().then((skillListings) => {
       setSkillListings(skillListings);
     });
   }, []);

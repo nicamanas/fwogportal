@@ -1,4 +1,4 @@
-export const SkillListingAPI = {
+export const LJPSSkillsAPI = {
 	getAll: async function () {
 		try {
 			const response = await fetch(

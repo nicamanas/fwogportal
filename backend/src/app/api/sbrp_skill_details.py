@@ -36,9 +36,9 @@ def create_skill(*, db: Session = Depends(get_db), payload: schemas.SkillDetails
     print(skill)
     return skill
 
-@router.put("/", response_model=schemas.SkillDetails)
-def update_skill(*, db: Session = Depends(get_db), payload: schemas.SkillDetails):
-    skill = get_skill_by_id(id=payload.skill_id, db=db)
+@router.put("/{id}", response_model=schemas.SkillDetails)
+def update_skill(id: int, payload: schemas.SkillDetails, db: Session = Depends(get_db)):
+    skill = get_skill_by_id(id=id, db=db)
     if not skill:
         raise HTTPException(status_code=404, detail="Skill not found")
     skill = crud.update_skill_details(

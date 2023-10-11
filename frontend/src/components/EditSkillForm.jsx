@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useNavigate } from '../router';
-import { SkillsAPI } from '../apis/skillsreplicaAPI';
+import { SBRPSkillsAPI } from '../apis/sbrpSkillsAPI';
 
 function EditSkillForm({skill}) {
     const { skill_id, skill_name, skill_status } = skill;
@@ -37,7 +37,7 @@ function EditSkillForm({skill}) {
 
         console.log(skill);
 
-        SkillsAPI.update(skill_id, skill)
+        SBRPSkillsAPI.update(skill_id, skill)
             .then((fetchedSkill) => {
                 console.log(fetchedSkill);
                 setFormData(fetchedSkill);

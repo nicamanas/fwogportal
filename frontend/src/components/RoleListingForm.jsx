@@ -1,6 +1,5 @@
 import React, { useState , useEffect} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
 import { useNavigate } from '../router';
 import CustomSnackbar from './CustomSnackbar';
 
@@ -122,7 +121,7 @@ function RoleListingForm() {
           />
 
             <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>
-                <img src="src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
+                <img src="../src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
                 Create New Role Listing
             </Typography>
             
