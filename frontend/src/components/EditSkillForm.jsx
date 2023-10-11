@@ -1,11 +1,18 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import { useNavigate } from '../router';
+import { SkillsAPI } from '../apis/skillsreplicaAPI';
 
-function SkillCreateForm() {
+function EditSkillForm({skill}) {
+    const { skill_id, skill_name, skill_status } = skill;
+
+    const navigate = useNavigate();
+
     const initialFormData = {
-        skill_name: "",
-        skill_status: "",
+        skill_id,
+        skill_name,
+        skill_status
     };
 
     const [formData, setFormData] = useState(initialFormData);
@@ -23,38 +30,25 @@ function SkillCreateForm() {
         
         const generateId = () => Math.floor(Math.random() * 1000000000);
 
-        const newSkill = {
+        const skill = {
             ...formData,
             skill_id: generateId()
         }
 
-        console.log(newSkill);
+        console.log(skill);
 
-        try {
-            const response = await fetch("linkhere", { //TODO: Add link here
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newSkill)
+        SkillsAPI.update(skill_id, skill)
+            .then((fetchedSkill) => {
+                console.log(fetchedSkill);
+                setFormData(fetchedSkill);
+                setSnackBarMsg("Skill updated!");
+                setOpenSnackbar(true);
+            })
+            .catch((error) => {
+                console.error("Error updating skill: ", error);
+                setSnackBarMsg("Error updating skill");
+                setOpenSnackbar(true);
             });
-            
-            const responseData = await response.json();
-
-            if (!response.ok) {
-                console.error("Error posting data with status:", response.status, responseData);
-                setSnackBarMsg("Error creating skill");
-                setOpenSnackbar(true);
-            } else { 
-                setSnackBarMsg("Skill created!");
-                setFormData(initialFormData);
-                setOpenSnackbar(true);
-            }
-            
-        } catch (error) {
-            console.error("Error creating skill: ", error);
-        }
-
     }
 
     const [snackbarMsg, setSnackBarMsg] = useState("");
@@ -87,8 +81,8 @@ function SkillCreateForm() {
             </div>
 
             <Typography variant="h3" sx={{textAlign: 'center', my: 3}}>
-                <img src="src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
-                Create a new skill
+                <img src="../../src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
+                Edit Skill
             </Typography>
 
             <form onSubmit={handleSubmit}>
@@ -113,7 +107,7 @@ function SkillCreateForm() {
                     </FormControl>
                     <FormControl fullWidth sx={{m:2}}>
                         <Button type="submit" size="large" variant="contained" sx={{backgroundColor:"#7d86d9", padding:1}} disableElevation>
-                            Create Skill
+                            Edit Skill
                         </Button>
                     </FormControl>
                 </Box>
@@ -122,4 +116,4 @@ function SkillCreateForm() {
     );
 }
 
-export default SkillCreateForm;
+export default EditSkillForm;

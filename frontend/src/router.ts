@@ -12,12 +12,14 @@ export type Path =
   | `/rolelistings`
   | `/rolelistings/:id`
   | `/skillcatalogue`
+  | `/skillcatalogue/edit/:id`
   | `/template`
   | `/viewfilterlistings`
 
 export type Params = {
   '/admin/edit/:id': { id: string }
   '/rolelistings/:id': { id: string }
+  '/skillcatalogue/edit/:id': { id: string }
 }
 
 export type ModalPath = never

@@ -43,7 +43,7 @@ function SkillsPanel() {
     };
   
     const handleEditClicked = (id) => {
-      navigate("/admin/editSkill/:id", { params: { id: id.toString() } }); // Adjust this route to your needs
+      navigate("/skillcatalogue/edit/:id", { params: { id: id.toString() } }); // Adjust this route to your needs
     }
   
     const handleDeleteClicked = (id) => {
