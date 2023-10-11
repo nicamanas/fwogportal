@@ -139,6 +139,9 @@ export default function LoginPage() {
               </Grid>
             </Grid>
         </Grid>
+        <Typography>
+          {JSON.stringify(loginInfo)}
+        </Typography>
       </Container>
     </form>
   );
