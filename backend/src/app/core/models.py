@@ -137,6 +137,7 @@ class StaffSkills(Base):
     staff = relationship("StaffDetails", back_populates="staff_skills_staff")
     skill = relationship("SkillDetails", back_populates="staff_skills_skill")
 
+
     def __init__(self, staff_id, skill_id, ss_status):
         self.staff_id = staff_id
         self.skill_id = skill_id
@@ -194,6 +195,19 @@ class RoleListings(Base):
     staff_details_source = relationship("StaffDetails", back_populates="role_listings_source", primaryjoin='and_(RoleListings.role_listing_source == StaffDetails.staff_id)')
     staff_details_creator = relationship("StaffDetails", back_populates="role_listings_creator", primaryjoin='and_(RoleListings.role_listing_creator == StaffDetails.staff_id)')
     staff_details_updater = relationship("StaffDetails", back_populates="role_listings_updater", primaryjoin='and_(RoleListings.role_listing_updater == StaffDetails.staff_id)')
+
+class SkillDetailsSBRP(Base):
+    __tablename__ = "skill_details_sbrp"
+
+    skill_id = Column(Integer, primary_key=True)
+    skill_name = Column(String(50))
+    skill_status = Column(Enum(*[e.value for e in SkillStatus]), default=SkillStatus.ACTIVE.value)
+
+    def __init__(self, skill_id, skill_name, skill_status):
+        self.skill_id = skill_id
+        self.skill_name = skill_name
+        self.skill_status = skill_status
+
 
 
     
