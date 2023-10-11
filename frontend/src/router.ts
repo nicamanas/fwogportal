@@ -11,6 +11,7 @@ export type Path =
   | `/createskill`
   | `/rolelistings`
   | `/rolelistings/:id`
+  | `/skillcatalogue`
   | `/template`
   | `/viewfilterlistings`
 

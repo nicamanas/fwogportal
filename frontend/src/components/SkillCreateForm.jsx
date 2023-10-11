@@ -1,7 +1,3 @@
-//Create a form to add a new skill
-// Path: frontend/src/components/SkillCreateForm.jsx
-// Refer to role listing form for reference
-
 import React, { useState} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';

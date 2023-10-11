@@ -30,6 +30,7 @@ export default function ResponsiveAppBar() {
 		"View Listings": () => navigate("/viewfilterlistings"),
 		"Edit Listings": () => navigate("/admin"),
 		"Create Listing": () => navigate("/createlisting"),
+		"Skill Catalogue": () => navigate("/skillcatalogue"),
 	}
 
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
