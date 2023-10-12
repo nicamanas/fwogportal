@@ -31,7 +31,7 @@ function SkillCreateForm() {
         console.log(newSkill);
 
         try {
-            const response = await fetch("linkhere", { //TODO: Add link here
+            const response = await fetch("http://localhost:8003/skill_details", { 
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

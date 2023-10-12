@@ -1,7 +1,7 @@
 export const SBRPSkillsAPI = {
     get: async function (id) {
         try {
-            const response = await fetch(`http://localhost:8003/skills/${id}`, {
+            const response = await fetch(`http://localhost:8003/skill_details/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -20,7 +20,7 @@ export const SBRPSkillsAPI = {
     },
     getAll: async function (id) {
         try {
-            const response = await fetch(`http://localhost:8003/skills/`, {
+            const response = await fetch(`http://localhost:8003/skill_details/`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -39,7 +39,7 @@ export const SBRPSkillsAPI = {
     },
     update: async function (id, skill) {
         try {
-            const response = await fetch(`http://localhost:8003/skills/${id}`, {
+            const response = await fetch(`http://localhost:8003/skill_details/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
