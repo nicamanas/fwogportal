@@ -36,6 +36,10 @@ export default function HomePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let filteredRoles;
+    if (selectedSkills.length === 0) {
+      setFilteredRoleListings(roleListings);
+      return;
+    }
     for (const skill of selectedSkills) {
       filteredRoles = roleListings.filter((roleListing) => {
         return roleListing.skills.includes(skill);
