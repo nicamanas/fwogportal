@@ -1,12 +1,16 @@
-import React from "react"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import Typography from "@mui/material/Typography"
-import Divider from "@mui/material/Divider"
-import Grid from "@mui/material/Grid"
-import Chip from "@mui/material/Chip"
-import CardActions from "@mui/material/CardActions"
-import Button from "@mui/material/Button"
+import React, { useState } from "react"
+import {
+	Button,
+	Card,
+	CardActions,
+	CardContent,
+	Chip,
+	Divider,
+	Grid,
+	Snackbar,
+	Typography,
+} from "@mui/material"
+import MuiAlert from "@mui/material/Alert"
 import { UserStorage } from "../utils/userLocalStorageUtils"
 import { RoleApplicationAPI } from "../apis/roleapplicationAPI"
 
@@ -40,27 +44,75 @@ export default function IndividualRoleListing({
 		"en-SG",
 		{ year: "numeric", month: "long", day: "numeric" }
 	)
+	const [snackbarMsg, setSnackBarMsg] = useState("")
+	const [snackbarStatus, setSnackBarStatus] = useState("success")
+	const [openSnackbar, setOpenSnackbar] = useState(false)
+
+	const Alert = React.forwardRef(function Alert(props: any, ref: any) {
+		return (
+			<MuiAlert
+				elevation={6}
+				ref={ref}
+				variant="filled"
+				{...props}
+			/>
+		)
+	})
+
+	const handleCloseSnackbar = (event: any, reason: any) => {
+		if (reason === "clickaway") {
+			return
+		}
+		setOpenSnackbar(false)
+	}
 
 	const handleApply = (roleListing: RoleListing) => {
 		console.log("Applying for role listing: ")
 		console.log(roleListing)
 
 		const user = UserStorage.getUser()
-		console.log(user)
 
-		console.log(roleListing.role_listing_id)
-		console.log(user.id)
 		RoleApplicationAPI.create(
 			user.id,
 			roleListing.role_listing_id,
 			"ACTIVE"
 		)
+			.then((response: any) => {
+				console.log(response)
+				setSnackBarStatus("success")
+				setSnackBarMsg("Successfully applied for role listing!")
+			})
+			.catch((error: any) => {
+				console.error(error)
+				setSnackBarStatus("error")
+				setSnackBarMsg("Failed to apply for role listing!")
+			})
+			.finally(() => setOpenSnackbar(true))
 	}
 
 	return (
 		<Card
 			variant="outlined"
 			style={{ maxWidth: "1000px", margin: "20px auto" }}>
+			<div style={{ position: "relative", height: "40px" }}>
+				<Snackbar
+					open={openSnackbar}
+					autoHideDuration={6000}
+					style={{
+						position: "absolute",
+						top: "35px",
+						left: "50%",
+						transform: "translateX(-50%)",
+					}}
+					onClose={handleCloseSnackbar}>
+					<Alert
+						onClose={handleCloseSnackbar}
+						severity={snackbarStatus}
+						sx={{ width: "100%" }}>
+						{snackbarMsg}
+					</Alert>
+				</Snackbar>
+			</div>
 			<CardContent>
 				<Grid
 					container
