@@ -265,7 +265,7 @@ class SkillDetailsSBRP(Base):
 class RoleApplications(Base):
     __tablename__ = "role_applications"
 
-    role_app_id = Column(Integer, primary_key=True, autoincrement=False)
+    role_app_id = Column(Integer, primary_key=True, autoincrement=True)
     role_listing_id = Column(Integer, ForeignKey(
         'role_listings.role_listing_id'))
     staff_id = Column(Integer, ForeignKey('staff_details.staff_id'))

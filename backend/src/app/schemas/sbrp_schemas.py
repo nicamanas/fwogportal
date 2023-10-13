@@ -36,3 +36,15 @@ class SkillDetails(BaseModel):
 
     class Config:
         orm_mode = True
+
+class RoleApplicationRequest(BaseModel):
+    role_listing_id: int
+    staff_id: int
+    role_app_status: str
+
+class RoleApplicationResponse(RoleApplicationRequest):
+    role_app_id: int
+    role_app_ts_create: datetime
+    
+    class Config:
+        orm_mode = True
