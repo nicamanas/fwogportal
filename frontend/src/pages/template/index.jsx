@@ -46,6 +46,7 @@ function App() {
 
   const handleApply = (job) => {
     console.log(`Applied for job: ${job.title}`);
+    console.log(job)
   };
 
   return (
