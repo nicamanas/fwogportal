@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import ping, rolelistings, lms, ljps, roleapplications
+from app.api import ping, rolelistings, lms, ljps, sbrp_skill_details, sbrp_staff_profile, roleapplications
 from app.core.models import Base
 from app.core.database import engine, SessionLocal
 from app.setup.db_prestart import init_db
-from app.api import sbrp_skill_details
 # TODO: Edit presetup
 
 Base.metadata.create_all(bind=engine)
@@ -25,6 +24,8 @@ app.include_router(rolelistings.router,
                    prefix="/rolelistings", tags=["rolelistings"])
 app.include_router(sbrp_skill_details.router,
                    prefix="/skill_details", tags=["sbrp_skill_details"])
+app.include_router(sbrp_staff_profile.router,
+                   prefix="/staff_profile", tags=["sbrp_staff_profile"])
 app.include_router(lms.router, prefix="/lms", tags=["lms"])
 app.include_router(ljps.router, prefix="/ljps", tags=["ljps"])
 app.include_router(roleapplications.router, prefix="/roleapplications", tags=["roleapplications"])

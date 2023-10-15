@@ -1,8 +1,10 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional, List
+from .ljps_schemas import StaffSkillsResponse
 
 from pydantic import BaseModel
+from enum import Enum
 
 
 class RoleListingsRequest(BaseModel):
@@ -46,5 +48,23 @@ class RoleApplicationResponse(RoleApplicationRequest):
     role_app_id: int
     role_app_ts_create: datetime
     
+    class Config:
+        orm_mode = True
+class SysRoleEnum(str, Enum):
+    staff = "staff"
+    hr = "hr" 
+    manager = "manager"
+    inactive = "inactive"
+
+class StaffProfileResponse(BaseModel):
+    staff_id: int
+    fname: str
+    lname: str
+    dept: str
+    email: str
+    phone: str
+    biz_address: str
+    sys_role: SysRoleEnum
+    skills: List[StaffSkillsResponse]
     class Config:
         orm_mode = True

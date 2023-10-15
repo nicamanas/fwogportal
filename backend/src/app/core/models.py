@@ -70,7 +70,7 @@ class StaffDetails(Base):
     staff_reporting_officer_officer = relationship(
         "StaffReportingOfficer", back_populates="reporting_officer", primaryjoin='and_(StaffDetails.staff_id == StaffReportingOfficer.RO_id)')
 
-    staff_skills_staff = relationship("StaffSkills", back_populates="staff")
+    staff_skills_staff = relationship("StaffSkills", back_populates="staff", primaryjoin='and_(StaffDetails.staff_id == StaffSkills.staff_id)')
 
     staff_roles_staff = relationship("StaffRoles", back_populates="staff")
 
@@ -165,7 +165,7 @@ class StaffSkills(Base):
     ss_status = Column(Enum(
         *[e.value for e in StaffSkillsStatus]), default=StaffSkillsStatus.ACTIVE.value)
 
-    staff = relationship("StaffDetails", back_populates="staff_skills_staff")
+    staff = relationship("StaffDetails", back_populates="staff_skills_staff", primaryjoin='and_(StaffSkills.staff_id == StaffDetails.staff_id)')
     skill = relationship("SkillDetails", back_populates="staff_skills_skill")
 
     def __init__(self, staff_id, skill_id, ss_status):
