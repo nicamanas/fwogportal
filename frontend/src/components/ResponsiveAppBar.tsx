@@ -30,10 +30,14 @@ export default function ResponsiveAppBar() {
 	const modals = useModals()
 
 	const settings: SettingsRoutes = {
-		Profile: () => () => {},
-		Account: () => () => {},
-		Dashboard: () => () => {},
+		Profile: () => {
+			handleCloseNavMenu()
+			navigate("/profile")
+		},
+		Account: () => {},
+		Dashboard: () => {},
 		Logout: () => {
+			console.log('logout')
 			UserStorage.clearUser();
 			handleCloseNavMenu();
 			navigate(0);

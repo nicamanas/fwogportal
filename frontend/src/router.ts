@@ -9,6 +9,7 @@ export type Path =
   | `/editlistings`
   | `/editlistings/create`
   | `/editlistings/edit/:id`
+  | `/profile`
   | `/rolelistings`
   | `/rolelistings/:id`
   | `/skillcatalogue`
