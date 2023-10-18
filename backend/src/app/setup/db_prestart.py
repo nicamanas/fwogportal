@@ -1,7 +1,7 @@
 import logging
 from sqlalchemy.orm import Session
 from app.setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings, staff_skills
-from app.crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud
+from app.crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud, sbrp_staff_skills_crud
 from app.schemas import ljps_schemas, lms_schemas, sbrp_schemas
 
 logger = logging.getLogger(__name__)
@@ -49,6 +49,13 @@ def init_db(db: Session) -> None:
         for staff_skill in staff_skills.DEFAULT_STAFF_SKILLS:
             in_staff_skills = ljps_schemas.StaffSkillsRequest(**staff_skill)
             ljps_crud.create_staff_skills(payload=in_staff_skills, db=db)
+    
+    sbrp_staff_skills = sbrp_staff_skills_crud.get_all_staff_skills(db=db)
+    if not sbrp_staff_skills:
+        logger.info("Creating default sbrp staff skills")
+        for staff_skill in staff_skills.DEFAULT_STAFF_SKILLS:
+            in_staff_skills = ljps_schemas.StaffSkillsRequest(**staff_skill)
+            sbrp_staff_skills_crud.create_staff_skills(payload=in_staff_skills, db=db)
 
     all_role_listings = rolelistings_crud.get_all_role_listings(db=db)
     if not all_role_listings:

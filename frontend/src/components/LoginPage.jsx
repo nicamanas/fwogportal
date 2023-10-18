@@ -82,6 +82,7 @@ export default function LoginPage() {
         openSnackbar={openSnackbar}
         handleCloseSnackbar={handleCloseSnackbar}
         snackbarMsg={snackbarMsg}
+        isSuccess={true}
       />
       <Container maxWidth="sm">
         <Grid container justifyContent="center" spacing={4}>

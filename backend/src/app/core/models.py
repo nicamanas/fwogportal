@@ -72,6 +72,8 @@ class StaffDetails(Base):
 
     staff_skills_staff = relationship("StaffSkills", back_populates="staff", primaryjoin='and_(StaffDetails.staff_id == StaffSkills.staff_id)')
 
+    staff_skills_sbrp_staff = relationship("StaffSkillsSBRP", back_populates="staff", primaryjoin='and_(StaffDetails.staff_id == StaffSkillsSBRP.staff_id)')
+
     staff_roles_staff = relationship("StaffRoles", back_populates="staff")
 
     role_listings_source = relationship("RoleListings", back_populates="staff_details_source",
@@ -125,6 +127,8 @@ class SkillDetails(Base):
 
     staff_skills_skill = relationship("StaffSkills", back_populates="skill")
     role_skills_skill = relationship("RoleSkills", back_populates="skill")
+
+    staff_skills_sbrp_skill = relationship("StaffSkillsSBRP", back_populates="skill")
 
     def __init__(self, skill_id, skill_name, skill_status):
         self.skill_id = skill_id
@@ -277,3 +281,21 @@ class RoleApplications(Base):
                                        primaryjoin='and_(RoleApplications.role_listing_id == RoleListings.role_listing_id)')
     staff_details_source = relationship("StaffDetails", back_populates="staff_details_source",
                                         primaryjoin='and_(RoleApplications.staff_id == StaffDetails.staff_id)')
+    
+class StaffSkillsSBRP(Base):
+    __tablename__ = "staff_skills_sbrp"
+
+    staff_id = Column(Integer, ForeignKey(
+        'staff_details.staff_id'), primary_key=True)
+    skill_id = Column(Integer, ForeignKey(
+        'skill_details.skill_id'), primary_key=True)
+    ss_status = Column(Enum(
+        *[e.value for e in StaffSkillsStatus]), default=StaffSkillsStatus.ACTIVE.value)
+
+    staff = relationship("StaffDetails", back_populates="staff_skills_sbrp_staff", primaryjoin='and_(StaffSkillsSBRP.staff_id == StaffDetails.staff_id)')
+    skill = relationship("SkillDetails", back_populates="staff_skills_sbrp_skill")
+
+    def __init__(self, staff_id, skill_id, ss_status):
+        self.staff_id = staff_id
+        self.skill_id = skill_id
+        self.ss_status = ss_status

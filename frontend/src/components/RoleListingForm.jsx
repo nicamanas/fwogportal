@@ -118,6 +118,7 @@ function RoleListingForm() {
             openSnackbar={openSnackbar}
             handleCloseSnackbar={handleCloseSnackbar}
             snackbarMsg={snackbarMsg}
+            isSuccess={snackbarMsg=="Role listing created! Bringing you there..." ? true : false}
           />
 
             <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>

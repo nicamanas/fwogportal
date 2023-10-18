@@ -68,3 +68,6 @@ class StaffProfileResponse(BaseModel):
     skills: List[StaffSkillsResponse]
     class Config:
         orm_mode = True
+
+class StaffProfileRequest(StaffProfileResponse):
+    pass

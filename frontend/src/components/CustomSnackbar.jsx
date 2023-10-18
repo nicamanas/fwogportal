@@ -3,7 +3,7 @@ import { Snackbar } from "@mui/material";
 import MuiAlert from '@mui/material/Alert';
 
 export default function CustomSnackbar(
-  { openSnackbar, handleCloseSnackbar, snackbarMsg }
+  { openSnackbar, handleCloseSnackbar, snackbarMsg, isSuccess }
 ) {
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -18,7 +18,7 @@ export default function CustomSnackbar(
         onClose={handleCloseSnackbar}>
           <Alert 
           onClose={handleCloseSnackbar} 
-          severity="success" 
+          severity={isSuccess ? "success" : "error"}
           sx={{ width: '100%' }}>
               {snackbarMsg}
           </Alert>
