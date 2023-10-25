@@ -58,7 +58,7 @@ export default function HomePage() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <FilterRoles
+      {/* <FilterRoles
         skillListings={skillListings}
         roleListings={roleListings}
         setSelectedSkills={setSelectedSkills}
@@ -73,7 +73,7 @@ export default function HomePage() {
               <RoleListingCard roleListing={roleListing} userSkills={userSkills}/>
             </Grid>
           ))}
-      </Grid>
+      </Grid> */}
     </Box>
   );
 }

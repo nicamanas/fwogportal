@@ -23,10 +23,10 @@ export const LJPSSkillsAPI = {
     },
 
     // New function to fetch skills for a specific user
-    getUserSkills: async function (userId) {
+    getUserSkills: async function (staffId) {
         try {
             const response = await fetch(
-                `http://localhost:8003/ljps/staff_skills/${userId}`,
+                `http://localhost:8003/ljps/staff_skills/${staffId}`,
                 {
                     method: "GET",
                     headers: {

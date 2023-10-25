@@ -64,6 +64,11 @@ def create_staff_skills(*, db: Session = Depends(get_db), payload: schemas.Staff
 def get_all_staff_skills(db: Session = Depends(get_db)):
     return crud.get_all_staff_skills(db=db)
 
+@router.get("/staff_skills/{staff_id}", response_model=schemas.StaffSkillsResponse)
+def get_staff_skills_by_staff_id(staff_id: int, db: Session = Depends(get_db)):
+    staff_skills = crud.get_staff_skills_by_staff_id(db=db, staff_id=staff_id)
+    return staff_skills
+
 # Staff roles
 @router.post("/staff_roles/", response_model=schemas.StaffRolesResponse, status_code=201)
 def create_staff_roles(*, db: Session = Depends(get_db), payload: schemas.StaffRolesRequest):

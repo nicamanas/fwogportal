@@ -53,8 +53,8 @@ def create_staff_skills(db: Session, payload: schemas.StaffSkillsRequest, ) -> m
     db.refresh(staff_skills)
     return staff_skills
 
-def get_staff_skills_by_user_id(db: Session, user_id: int) -> Optional[models.StaffSkills]:
-    return db.query(models.StaffSkills).filter(models.StaffSkills.user_id == user_id).first()
+def get_staff_skills_by_staff_id(db: Session, staff_id: int) -> Optional[models.StaffSkills]:
+    return db.query(models.StaffSkills).filter(models.StaffSkills.staff_id == staff_id).first()
 
 # Staff roles 
 

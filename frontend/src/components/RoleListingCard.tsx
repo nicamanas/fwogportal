@@ -20,7 +20,7 @@ type RoleListingCardProps = {
   userSkills: string[];
 }
 
-export default function RoleListingCard({ roleListing , userSkills} : RoleListingCardProps) {
+export default function RoleListingCard({roleListing , userSkills} : RoleListingCardProps) {
   const { role_listing_id, role_name, role_listing_desc, skills, role_listing_close } = roleListing;
   const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-SG', { day: 'numeric', month: 'long', year: 'numeric' })
   const navigate = useNavigate();
@@ -68,6 +68,7 @@ export default function RoleListingCard({ roleListing , userSkills} : RoleListin
   );
 }
 
-function checkSkills(requiredSkills, userSkills) {
+function checkSkills(requiredSkills: string[], userSkills?: string[]) {
+  if (!Array.isArray(userSkills)) return false;
   return requiredSkills.every(skill => userSkills.includes(skill));
 }
