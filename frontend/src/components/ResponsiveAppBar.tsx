@@ -202,7 +202,7 @@ export default function ResponsiveAppBar() {
 							<IconButton
 								onClick={handleOpenUserMenu}
 								sx={{ p: 0 }}>
-								<Avatar src="src/assets/pepe.png" />
+								<Avatar src="../../src/assets/cat.jpeg" />
 							</IconButton>
 						</Tooltip>
 						<Menu

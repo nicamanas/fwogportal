@@ -26,10 +26,11 @@ type RoleListing = {
 
 type IndividualRoleListingProps = {
 	roleListing: RoleListing
+	userSkills: string[];
 }
 
 export default function IndividualRoleListing({
-	roleListing,
+	roleListing, userSkills,
 }: IndividualRoleListingProps) {
 	const {
 		role_listing_id,
@@ -102,7 +103,7 @@ export default function IndividualRoleListing({
 	return (
 		<Card
 			variant="outlined"
-			style={{ maxWidth: "1000px", margin: "20px auto" }}>
+			sx={{ maxWidth: "1000px", margin: "50px auto", px:5}}>
 			<div style={{ position: "relative", height: "40px" }}>
 				<Snackbar
 					open={openSnackbar}
@@ -123,45 +124,61 @@ export default function IndividualRoleListing({
 				</Snackbar>
 			</div>
 			<CardContent>
-				<Grid
-					container
-					justifyContent="space-between"
-					rowGap={4}>
-					<Grid
-						item
-						xs={12}>
-						<Typography variant="h2">{role_name}</Typography>
-						<Divider />
+				<Grid container spacing={3}>
+					<Grid item xs={12}>
+						<Typography variant="h3" gutterBottom>{role_name}</Typography>
+						<Divider sx={{ ma: 3 }}/>
 					</Grid>
-					<Typography>
+					<Grid item xs={12}>
+					<Typography variant="subtitle1" gutterBottom>
 						<strong>Listing Description:</strong>{" "}
 						{role_listing_desc}
 					</Typography>
-					<Typography>
+					<Typography variant="subtitle1" gutterBottom>
 						<strong>About the role:</strong> {role_description}
 					</Typography>
-					<Typography>
+					<Typography variant="subtitle1" gutterBottom>
 						<strong>Department:</strong> {dept}
 					</Typography>
-					<Grid xs={12}>
-						<Typography>
-							<strong>Skills Required: </strong>
-							{skills.map((skill) => {
-								return (
-									<Chip
-										label={skill}
-										variant="outlined"
-									/>
-								)
-							})}
-						</Typography>
-					</Grid>
-					<Typography>
+					<Typography variant="subtitle1" gutterBottom>
 						<strong>Closing Date:</strong> {formattedClosing}
 					</Typography>
+					</Grid>
+					<Grid item xs={12}>
+					<Typography variant="subtitle1" component="div" gutterBottom>
+						<strong>Skills Required: </strong>
+						{skills.map((skill) => {
+							const isSkillMatched = userSkills.includes(skill);
+							if (isSkillMatched) {
+							return (
+								<Chip
+								label={skill}
+								key={skill}
+								color="secondary"
+								sx={{ marginRight: 1 }}
+								/>
+							);
+							} else {
+							return (
+								<Chip
+								label={skill}
+								variant='outlined'
+								key={skill}
+								color="default"
+								sx={{
+									borderColor: "grey",
+									color: "grey",
+									marginRight: 1
+								}}
+								/>
+							);
+							}
+						})}
+						</Typography>
+					</Grid>
 				</Grid>
 			</CardContent>
-			<CardActions sx={{ justifyContent: "center" }}>
+			<CardActions sx={{ justifyContent: "center", padding: "20px", my:"10px"}}>
 				<Button
 					size="large"
 					color="primary"

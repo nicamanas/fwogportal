@@ -153,7 +153,6 @@ export default function EditRoleListingForm({roleListing}) {
             </div>
 
             <Typography variant="h3" sx={{ textAlign: 'center', my:3}}>
-                <img src="/src/assets/pepe.png" alt="Pepe" width="50px" height="50px"/>
                 Edit Role Listing
             </Typography>
             
