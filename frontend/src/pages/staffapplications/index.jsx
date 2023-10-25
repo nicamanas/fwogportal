@@ -80,6 +80,7 @@ function StaffApplications() {
             {applications
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((application) => {
+                if (application.role_app_status == 'active') {
                 return (
                   <TableRow 
                     hover 
@@ -107,8 +108,9 @@ function StaffApplications() {
                       </Button>
                     </TableCell>
                   </TableRow>
-                );
+                );}
               })}
+            
           </TableBody>
         </Table>
       </TableContainer>
