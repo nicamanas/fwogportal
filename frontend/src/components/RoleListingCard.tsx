@@ -31,7 +31,7 @@ export default function RoleListingCard({roleListing , userSkills} : RoleListing
   return (
     <Card sx={{height: '300px'}}>
       <CardActionArea sx={{height: "100%", p: 2}} onClick={handleClick}>
-        <Grid container justifyItems="space-between" sx={{height: "100%"}}>
+        <Grid container justifyContent="space-between" sx={{height: "100%"}}>
           <Grid item>
             <Typography gutterBottom variant="h5" component="div">
             {role_name}
@@ -47,6 +47,7 @@ export default function RoleListingCard({roleListing , userSkills} : RoleListing
                   const isSkillMatched = userSkills.includes(skill);
                   return <Chip label={skill} 
                         variant='outlined'
+                        key={skill}
                         color={isSkillMatched ? "primary" : "default"}
                         sx={{
                           borderColor: isSkillMatched ? "green" : "grey",

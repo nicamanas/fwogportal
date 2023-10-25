@@ -64,9 +64,12 @@ def create_staff_skills(*, db: Session = Depends(get_db), payload: schemas.Staff
 def get_all_staff_skills(db: Session = Depends(get_db)):
     return crud.get_all_staff_skills(db=db)
 
-@router.get("/staff_skills/{staff_id}", response_model=schemas.StaffSkillsResponse)
+@router.get("/staff_skills/{staff_id}", response_model=List[schemas.SkillDetailsResponse])
 def get_staff_skills_by_staff_id(staff_id: int, db: Session = Depends(get_db)):
-    staff_skills = crud.get_staff_skills_by_staff_id(db=db, staff_id=staff_id)
+    staff_skills_objs = crud.get_staff_skills_by_staff_id(db=db, staff_id=staff_id)
+    staff_skill_ids = [obj.skill_id for obj in staff_skills_objs]
+    all_skills = crud.get_all_skill_details(db=db)  
+    staff_skills = [skill for skill in all_skills if skill.skill_id in staff_skill_ids]
     return staff_skills
 
 # Staff roles

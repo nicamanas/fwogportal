@@ -54,7 +54,7 @@ def create_staff_skills(db: Session, payload: schemas.StaffSkillsRequest, ) -> m
     return staff_skills
 
 def get_staff_skills_by_staff_id(db: Session, staff_id: int) -> Optional[models.StaffSkills]:
-    return db.query(models.StaffSkills).filter(models.StaffSkills.staff_id == staff_id).first()
+    return db.query(models.StaffSkills).filter(models.StaffSkills.staff_id == staff_id).all()
 
 # Staff roles 
 

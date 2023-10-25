@@ -37,7 +37,8 @@ export default function HomePage() {
       setSkillListings(skillListings);
     });
     LJPSSkillsAPI.getUserSkills(userId).then(skills => {
-      setUserSkills(skills);
+      const skillNames = skills.map(skill => skill.skill_name);
+      setUserSkills(skillNames);
     });
   }, []);
 
@@ -58,7 +59,7 @@ export default function HomePage() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* <FilterRoles
+      <FilterRoles
         skillListings={skillListings}
         roleListings={roleListings}
         setSelectedSkills={setSelectedSkills}
@@ -73,7 +74,7 @@ export default function HomePage() {
               <RoleListingCard roleListing={roleListing} userSkills={userSkills}/>
             </Grid>
           ))}
-      </Grid> */}
+      </Grid>
     </Box>
   );
 }

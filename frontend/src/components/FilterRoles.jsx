@@ -61,7 +61,7 @@ export default function FilterRoles({
                 }}
               />
             </Grid>
-            <Grid xs={3} textAlign="end">
+            <Grid item xs={3} textAlign="end">
               <FormControl sx={{width: "96%"}}>
                 <Button
                   type="submit"
