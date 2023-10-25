@@ -9,7 +9,7 @@ const theme = createTheme({
       main: '#688C61', // Medium Deep Orange
     },
     background: {
-      default: '#FAFAFA', // Off-White
+      default: '#f4f2ee', 
     },
     text: {
       primary: '#212121', // Dark Grey

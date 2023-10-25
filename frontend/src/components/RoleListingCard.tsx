@@ -45,17 +45,32 @@ export default function RoleListingCard({roleListing , userSkills} : RoleListing
               {
                 skills.map((skill) => {
                   const isSkillMatched = userSkills.includes(skill);
-                  return <Chip label={skill} 
+                  if (isSkillMatched) {
+                    return (
+                      <Chip 
+                        label={skill} 
+                        key={skill}
+                        color="secondary"
+                        sx={{ marginRight: 1, marginBottom: 1 }}
+                      />
+                    );
+                  } else {
+                    return (
+                      <Chip 
+                        label={skill} 
                         variant='outlined'
                         key={skill}
-                        color={isSkillMatched ? "primary" : "default"}
+                        color="default"
                         sx={{
-                          borderColor: isSkillMatched ? "green" : "grey",
-                          color: isSkillMatched ? "green" : "grey",
+                          borderColor: "grey",
+                          color: "grey",
                           marginRight: 1,
                           marginBottom: 1
-                        }}/>
-                })
+                        }}
+                      />
+                    );
+                  }
+                })                
               }
             </Grid>
             

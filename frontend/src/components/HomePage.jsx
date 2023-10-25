@@ -58,7 +58,7 @@ export default function HomePage() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1}}>
       <FilterRoles
         skillListings={skillListings}
         roleListings={roleListings}

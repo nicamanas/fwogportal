@@ -20,16 +20,10 @@ export default function FilterRoles({
   sx,
 }) {
   return (
-    <Box sx={sx}>
+    <Box sx={{mx:3, my:7}}>
       <form onSubmit={handleSubmit}>
         <Stack direction="row" spacing={2} alignItems="center">
-          <img
-            src="src/assets/pepe.png"
-            alt="Pepe"
-            width="50px"
-            height="50px"
-          />
-          <Typography variant="h6">Search Role Listings by Skills</Typography>
+          <Typography variant="h4">Search Role Listings by Skills</Typography>
           <Grid container direction="row" item>
             <Grid item xs={9}>
               <Autocomplete
