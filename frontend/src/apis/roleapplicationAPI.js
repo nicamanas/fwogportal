@@ -31,4 +31,30 @@ export const RoleApplicationAPI = {
 			throw new Error("Error posting data: ", error)
 		}
 	},
+	getall: async function () {
+		try {
+			const response = await fetch(
+				`http://localhost:8003/roleapplications/`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			)
+			const responseData = await response.json()
+
+			if (!response.ok) {
+				throw new Error(
+					"Error getting data with status: ",
+					response.status,
+					responseData
+				)
+			} else {
+				return responseData
+			}
+		} catch (error) {
+			throw new Error("Error getting data: ", error)
+		}
+	},
 }
