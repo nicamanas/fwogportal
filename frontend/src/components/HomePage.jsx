@@ -58,7 +58,8 @@ export default function HomePage() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1}}>
+    <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+     <Box sx={{ maxWidth: '1200px', width: '100%' }}>
       <FilterRoles
         skillListings={skillListings}
         roleListings={roleListings}
@@ -67,14 +68,17 @@ export default function HomePage() {
         handleSubmit={handleSubmit}
         sx={{ mb:2 }}
       />
-      <Grid container columnSpacing={6} rowSpacing={6}>
-        {filteredRoleListings.length > 0 &&
-          filteredRoleListings.map((roleListing, index) => (
-            <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={index}>
-              <RoleListingCard roleListing={roleListing} userSkills={userSkills}/>
-            </Grid>
-          ))}
-      </Grid>
+      </Box>  
+      <Box sx={{ maxWidth: '1800px', width: '100%' }}>
+        <Grid container spacing={6} justifyContent="center">
+          {filteredRoleListings.length > 0 &&
+            filteredRoleListings.map((roleListing, index) => (
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={index}>
+                <RoleListingCard roleListing={roleListing} userSkills={userSkills}/>
+              </Grid>
+            ))}
+        </Grid>
+      </Box>
     </Box>
   );
 }

@@ -21,9 +21,11 @@ export default function FilterRoles({
 }) {
   return (
     <Box sx={{mx:3, my:7}}>
+      <Typography variant="h5" marginBottom={3}>
+        Search Role Listings by Skills
+      </Typography>
       <form onSubmit={handleSubmit}>
         <Stack direction="row" spacing={2} alignItems="center">
-          <Typography variant="h4">Search Role Listings by Skills</Typography>
           <Grid container direction="row" item>
             <Grid item xs={9}>
               <Autocomplete
@@ -36,6 +38,7 @@ export default function FilterRoles({
                 renderTags={(value, getTagProps) =>
                   value.map((option, index) => (
                     <Chip
+                      size="small"
                       variant="outlined"
                       label={option}
                       {...getTagProps({ index })}
@@ -47,6 +50,7 @@ export default function FilterRoles({
                     {...params}
                     label="Select Skills"
                     placeholder="Select Skills"
+                    fullWidth
                   />
                 )}
                 onChange={(event, value) => {
@@ -57,9 +61,9 @@ export default function FilterRoles({
             </Grid>
             <Grid item xs={3} textAlign="end">
               <FormControl sx={{width: "96%"}}>
-                <Button
+              <Button
                   type="submit"
-                  size="large"
+                  size="medium"
                   variant="contained"
                   color="secondary"
                   sx={{ paddingY: "14px", width: "100%"}}
