@@ -19,16 +19,13 @@ export const RoleApplicationAPI = {
 			const responseData = await response.json()
 
 			if (!response.ok) {
-				throw new Error(
-					"Error posting data with status: ",
-					response.status,
-					responseData
-				)
-			} else {
-				return responseData
+				console.log(responseData)
+				throw new Error(responseData.detail)
 			}
-		} catch (error) {
-			throw new Error("Error posting data: ", error)
+
+			return responseData
+		} catch (e) {
+			throw new Error(e)
 		}
 	},
 	getall: async function () {

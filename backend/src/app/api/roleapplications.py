@@ -32,9 +32,12 @@ def get_role_application_by_id(id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=schemas.RoleApplicationResponse)
 def create_role_application(*, db: Session = Depends(get_db), payload: schemas.RoleApplicationRequest):
-    role_application = crud.create_role_application(db=db, payload=payload)
-    print(role_application)
-    return role_application
+    try:
+        role_application = crud.create_role_application(db=db, payload=payload)
+        print(role_application)
+        return role_application
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @router.put("/{id}", response_model=schemas.RoleApplicationResponse)
 def withdraw_role_application(id: int, db: Session = Depends(get_db)):

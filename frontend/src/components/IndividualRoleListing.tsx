@@ -85,7 +85,16 @@ export default function IndividualRoleListing({
 			.catch((error: any) => {
 				console.error(error)
 				setSnackBarStatus("error")
-				setSnackBarMsg("Failed to apply for role listing!")
+				if (
+					error.message ==
+					"Error: You have already applied for this role listing."
+				) {
+					setSnackBarMsg(
+						"You have already applied for this role listing!"
+					)
+				} else {
+					setSnackBarMsg("Failed to apply for role listing!")
+				}
 			})
 			.finally(() => setOpenSnackbar(true))
 	}
