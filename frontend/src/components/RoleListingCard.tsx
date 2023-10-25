@@ -16,15 +16,17 @@ type RoleListing = {
 }
 
 type RoleListingCardProps = {
-  roleListing: RoleListing
+  roleListing: RoleListing;
+  userSkills: string[];
 }
 
-export default function RoleListingCard({ roleListing } : RoleListingCardProps) {
+export default function RoleListingCard({ roleListing , userSkills} : RoleListingCardProps) {
   const { role_listing_id, role_name, role_listing_desc, skills, role_listing_close } = roleListing;
   const formattedClosing = new Date(role_listing_close).toLocaleDateString('en-SG', { day: 'numeric', month: 'long', year: 'numeric' })
   const navigate = useNavigate();
   const handleClick = () => navigate("/rolelistings/:id", { params: { id: role_listing_id.toString() } });
 
+  const hasRelevantSkills = checkSkills(skills, userSkills);
 
   return (
     <Card sx={{height: '300px'}}>
@@ -42,7 +44,16 @@ export default function RoleListingCard({ roleListing } : RoleListingCardProps) 
             <Grid item xs={12}>
               {
                 skills.map((skill) => {
-                  return <Chip label={skill} variant='outlined'/>
+                  const isSkillMatched = userSkills.includes(skill);
+                  return <Chip label={skill} 
+                        variant='outlined'
+                        color={isSkillMatched ? "primary" : "default"}
+                        sx={{
+                          borderColor: isSkillMatched ? "green" : "grey",
+                          color: isSkillMatched ? "green" : "grey",
+                          marginRight: 1,
+                          marginBottom: 1
+                        }}/>
                 })
               }
             </Grid>
@@ -55,4 +66,8 @@ export default function RoleListingCard({ roleListing } : RoleListingCardProps) 
       </CardActionArea>
     </Card>
   );
+}
+
+function checkSkills(requiredSkills, userSkills) {
+  return requiredSkills.every(skill => userSkills.includes(skill));
 }

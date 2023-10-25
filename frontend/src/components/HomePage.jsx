@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { LJPSSkillsAPI } from "../apis/ljpsSkillsAPI";
 import FilterRoles from "./FilterRoles";
+import { UserStorage } from "../utils/userLocalStorageUtils";
 
 export default function HomePage() {
   const [skillListings, setSkillListings] = useState([]);
@@ -23,6 +24,10 @@ export default function HomePage() {
   const [roleListings, setRoleListings] = useState([]);
   const [filteredRoleListings, setFilteredRoleListings] = useState([]);
 
+  // role-skill match
+  const [userSkills, setUserSkills] = useState([]);
+  const userId = UserStorage.getUser().id;
+
   useEffect(() => {
     RoleListingAPI.getAllOpen().then((rolelistings) => {
       setRoleListings(rolelistings);
@@ -30,6 +35,9 @@ export default function HomePage() {
     });
     LJPSSkillsAPI.getAll().then((skillListings) => {
       setSkillListings(skillListings);
+    });
+    LJPSSkillsAPI.getUserSkills(userId).then(skills => {
+      setUserSkills(skills);
     });
   }, []);
 
@@ -62,7 +70,7 @@ export default function HomePage() {
         {filteredRoleListings.length > 0 &&
           filteredRoleListings.map((roleListing, index) => (
             <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={index}>
-              <RoleListingCard roleListing={roleListing} />
+              <RoleListingCard roleListing={roleListing} userSkills={userSkills}/>
             </Grid>
           ))}
       </Grid>
