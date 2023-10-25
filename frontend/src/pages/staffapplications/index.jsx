@@ -46,14 +46,9 @@ function StaffApplications() {
       setPage(0);
     };
   
-    const handleEditClicked = (id) => {
+    const handleWithdraw = (id) => {
+        console.log(id)
       //navigate("/skillcatalogue/edit/:id", { params: { id: id.toString() } }); // Adjust this route to your needs
-    }
-  
-    const handleDeleteClicked = (id) => {
-      // Implement the delete functionality here
-      // For instance: call an API endpoint to delete the skill with the given id
-      // and then update your local state (skills) if the API call was successful
     }
 
   return (
@@ -107,12 +102,9 @@ function StaffApplications() {
                       );
                     })}
                     <TableCell align="right">
-                      <IconButton color="primary" onClick={() => handleEditClicked(skill.skill_id)}>
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton color="error" onClick={() => handleDeleteClicked(skill.skill_id)}>
-                        <DeleteIcon />
-                      </IconButton>
+                      <Button variant="contained" onClick={() => handleWithdraw(application.role_app_id)}>
+                        Withdraw
+                      </Button>
                     </TableCell>
                   </TableRow>
                 );
