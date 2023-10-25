@@ -67,7 +67,8 @@ export default function FilterRoles({
                   type="submit"
                   size="large"
                   variant="contained"
-                  sx={{ backgroundColor: "#7d86d9", paddingY: "14px", width: "100%"}}
+                  color="secondary"
+                  sx={{ paddingY: "14px", width: "100%"}}
                   disableElevation
                 >
                   Search

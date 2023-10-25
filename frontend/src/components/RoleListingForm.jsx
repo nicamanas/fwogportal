@@ -113,7 +113,7 @@ function RoleListingForm() {
     }, []); 
 
     return (
-        <Container maxWidth="md" sx={{backgroundColor:'white', mt: 7, p: 1}}>
+        <Container maxWidth="md" sx={{mt: 7, p: 1}}>
           <CustomSnackbar
             openSnackbar={openSnackbar}
             handleCloseSnackbar={handleCloseSnackbar}
@@ -196,7 +196,7 @@ function RoleListingForm() {
                         />
                     </FormControl>
                     <FormControl fullWidth sx={{m:2}}>
-                        <Button type="submit" size="large" variant="contained" sx={{backgroundColor:"#7d86d9", padding:1}} disableElevation>
+                        <Button type="submit" size="large" variant="contained" sx={{padding:1}} disableElevation>
                                 Submit
                         </Button>
                     </FormControl>

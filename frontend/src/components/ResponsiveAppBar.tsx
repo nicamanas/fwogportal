@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import PeopleIcon from '@mui/icons-material/People';
 
 import { Link, useModals, useNavigate, useParams } from "../router";
 import { UserStorage } from "../utils/userLocalStorageUtils.js";
@@ -75,10 +75,10 @@ export default function ResponsiveAppBar() {
   }, []);
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#7d86d9" }}>
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <PeopleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -88,12 +88,12 @@ export default function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".2rem", 
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            FwogPortal
+            SBRP
           </Typography>
 
           <Box
@@ -143,7 +143,6 @@ export default function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -154,12 +153,12 @@ export default function ResponsiveAppBar() {
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".2rem", 
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            FwogPortal
+            SBRP
           </Typography>
           <Box
             sx={{
@@ -183,7 +182,6 @@ export default function ResponsiveAppBar() {
                 }}
                 sx={{
                   my: 2,
-                  color: "white",
                   display: "block",
                 }}
               >
@@ -193,7 +191,7 @@ export default function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="User settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar src="src/assets/pepe.png" />
               </IconButton>

@@ -70,7 +70,7 @@ function SkillCreateForm() {
     };
 
     return (
-        <Container maxWidth="md" sx={{backgroundColor:'white', mt: 7, p: 1}}>
+        <Container maxWidth="md" sx={{mt: 7, p: 1}}>
             <div style={{ position: 'relative', height: '40px' }}>
             <Snackbar
             open={openSnackbar}
@@ -112,7 +112,7 @@ function SkillCreateForm() {
                         </Select>
                     </FormControl>
                     <FormControl fullWidth sx={{m:2}}>
-                        <Button type="submit" size="large" variant="contained" sx={{backgroundColor:"#7d86d9", padding:1}} disableElevation>
+                        <Button type="submit" size="large" variant="contained" sx={{ padding:1}} disableElevation>
                             Create Skill
                         </Button>
                     </FormControl>
