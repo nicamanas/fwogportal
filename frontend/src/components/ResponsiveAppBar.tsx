@@ -138,7 +138,7 @@ export default function ResponsiveAppBar() {
                     pageRoutes[pageName]();
                   }}
                 >
-                  <Typography textAlign="center">{pageName}</Typography>
+                  <Typography textAlign="center" color="inherit">{pageName}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -183,6 +183,7 @@ export default function ResponsiveAppBar() {
                 sx={{
                   my: 2,
                   display: "block",
+                  color: 'inherit'
                 }}
               >
                 {pageName}
