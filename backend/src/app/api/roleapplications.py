@@ -35,3 +35,9 @@ def create_role_application(*, db: Session = Depends(get_db), payload: schemas.R
     role_application = crud.create_role_application(db=db, payload=payload)
     print(role_application)
     return role_application
+
+@router.put("/{id}", response_model=schemas.RoleApplicationResponse)
+def withdraw_role_application(id: int, db: Session = Depends(get_db)):
+    role_application = crud.withdraw_role_application(db=db, id=id)
+    print(role_application)
+    return role_application

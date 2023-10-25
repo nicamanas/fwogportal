@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import {Box, Button, Container} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import {Box, Button, Container, Snackbar} from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -31,9 +32,10 @@ function StaffApplications() {
         RoleListingAPI.getAll().then((fetchedListings) => {
             setListings(fetchedListings)
         });
-      RoleApplicationAPI.getall().then((fetchedApplications) => {
-        setApplications(fetchedApplications)
-    });
+        RoleApplicationAPI.getall().then((fetchedApplications) => {
+        const activeApplications = fetchedApplications.filter(application => application.role_app_status === "active");
+        setApplications(activeApplications);
+      });
        
     }, []);
   
@@ -45,14 +47,60 @@ function StaffApplications() {
       setRowsPerPage(+event.target.value);
       setPage(0);
     };
-  
-    const handleWithdraw = (id) => {
+
+    const [snackbarMsg, setSnackBarMsg] = useState("")
+    const [snackbarStatus, setSnackBarStatus] = useState("success")
+    const [openSnackbar, setOpenSnackbar] = useState(false)
+    const handleCloseSnackbar = (event, reason) => {
+      if (reason === "clickaway") {
+        return;
+      }
+      setOpenSnackbar(false);
+    };
+    const Alert = React.forwardRef(function Alert(props, ref) {
+      return (
+        <MuiAlert
+          elevation={6}
+          ref={ref}
+          variant="filled"
+          {...props}
+        />
+      )
+    })
+    const handleWithdraw = async (id) => {
         console.log(id)
+        RoleApplicationAPI.withdraw(id).then((fetchedApplication) => {
+            console.log(fetchedApplication);
+            setApplications(applications.filter((application) => application.role_app_id != id));
+            setSnackBarStatus("success")
+            setSnackBarMsg("Application withdrawn!");
+        })
+        .catch((error) => {
+          console.error(error)
+          setSnackBarStatus("error")
+          setSnackBarMsg("Failed to withdraw from role listing!")
+        })
+        .finally(() => setOpenSnackbar(true))
+
       //navigate("/skillcatalogue/edit/:id", { params: { id: id.toString() } }); // Adjust this route to your needs
     }
 
   return (
     <Container maxWidth="md" sx={{backgroundColor: "white", mt: 7, p:3}}>
+        <Snackbar
+					open={openSnackbar}
+					autoHideDuration={6000}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }} 
+          sx={{mt:8}}
+					onClose={handleCloseSnackbar}>
+					<Alert
+						onClose={handleCloseSnackbar}
+						severity={snackbarStatus}
+						sx={{ width: "100%" }}>
+						{snackbarMsg}
+					</Alert>
+				</Snackbar> 
+
       <TableContainer sx={{backgroundColor: "white"}}>
         <Table stickyHeader aria-label="sticky table" sx={{backgroundColor: "white"}}>
           <TableHead>
@@ -89,9 +137,10 @@ function StaffApplications() {
                     sx={{ '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.04)' } }}
                   >
                     {columns.map((column) => {
-                        let value;
+                      let value;
                       if (column.id == 'role_name') {
-                        value = listings.find((listing) => listing.role_listing_id == application.role_listing_id).role_name;
+                        const matchedListing = listings.find(listing => listing.role_listing_id == application.role_listing_id);
+                        value = matchedListing ? matchedListing.role_name : 'N/A'; 
                       } else {
                         value = application[column.id];
                       }

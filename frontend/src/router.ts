@@ -14,6 +14,7 @@ export type Path =
   | `/rolelistings/:id`
   | `/skillcatalogue`
   | `/skillcatalogue/edit/:id`
+  | `/staffapplications`
   | `/template`
 
 export type Params = {

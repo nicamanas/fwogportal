@@ -23,3 +23,14 @@ def create_role_application(db: Session, payload: schemas.RoleApplicationRequest
     db.commit()
     db.refresh(role_application) 
     return role_application
+
+def withdraw_role_application(db: Session, id: int) -> models.RoleApplications:
+    role_application = db.query(
+        models.RoleApplications
+    ).filter(
+        models.RoleApplications.role_app_id == id
+    ).first()
+    role_application.role_app_status = "inactive"
+    db.commit()
+    db.refresh(role_application)
+    return role_application
