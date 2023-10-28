@@ -1,9 +1,11 @@
 PyMySQL==1.0.2 # or mysqlclient==2.1.0 (depending on preference)
 cryptography==3.4.8
 SQLAlchemy==1.4.41
-fastapi==0.87.0
+fastapi==0.89.1
 uvicorn==0.20.0
 
 # dev
-pytest==7.2.0
-httpx==0.23.1
+pytest==7.2.1
+httpx==0.23.3
+starlette==0.22.
+anyio==3.6.2

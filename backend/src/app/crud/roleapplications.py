@@ -42,3 +42,13 @@ def withdraw_role_application(db: Session, id: int) -> models.RoleApplications:
     db.commit()
     db.refresh(role_application)
     return role_application
+
+def delete_role_application(db: Session, id: int) -> models.RoleApplications:
+    role_application = db.query(
+        models.RoleApplications
+    ).filter(
+        models.RoleApplications.role_app_id == id
+    ).first()
+    db.delete(role_application)
+    db.commit()
+    return role_application

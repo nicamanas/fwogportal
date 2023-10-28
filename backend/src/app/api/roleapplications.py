@@ -44,3 +44,9 @@ def withdraw_role_application(id: int, db: Session = Depends(get_db)):
     role_application = crud.withdraw_role_application(db=db, id=id)
     print(role_application)
     return role_application
+
+@router.delete("/{id}", response_model=schemas.RoleApplicationResponse)
+def delete_role_application(id: int, db: Session = Depends(get_db)):
+    role_application = crud.delete_role_application(db=db, id=id)
+    print(role_application)
+    return role_application

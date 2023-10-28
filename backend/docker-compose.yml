@@ -33,7 +33,16 @@ services:
       sbrp-db:
         condition: service_healthy
 
-
+  sbrp-test:
+    build: ./src
+    command: bash -c 'while !</dev/tcp/sbrp-db/3306; do sleep 1; done; python -m pytest'
+    volumes:
+      - ./src/:/usr/src/app/
+    environment:
+      - DATABASE_URL=mysql+pymysql://fwogking:fwogp4ssw0rd@sbrp-db/fwogportal
+    depends_on:
+      sbrp-db:
+        condition: service_healthy
 
 volumes:
   mysql_data:
