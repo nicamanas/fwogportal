@@ -41,7 +41,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: create docker containers for app and database
       run: |
-        docker-compose-up -d
+        docker-compose up -d
     - name: Test with pytest
       run: |
         docker-compose exec backend pip3 install pytest
