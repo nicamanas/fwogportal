@@ -48,6 +48,10 @@ jobs:
         cd backend
         docker-compose logs -f -t sbrp-backend &
         docker-compose exec -it sbrp-backend python -m pytest --junit-xml=test-results.xml 
+    - name: Copy JUnit XML file
+      run: |
+        cd backend
+        docker cp container_id://test-results.xml $GITHUB_WORKSPACE/test-results.xml
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2.11.0
       if: always()
