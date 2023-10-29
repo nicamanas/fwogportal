@@ -45,6 +45,5 @@ jobs:
         docker-compose up -d
     - name: Run Tests
       run: |
-        cd backend
         docker-compose exec -it backend_sbrp-backend_1 python -m pytest
         
