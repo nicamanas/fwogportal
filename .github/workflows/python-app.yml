@@ -48,8 +48,6 @@ jobs:
         cd backend
         docker-compose logs -f -t sbrp-backend &
         docker-compose exec -it sbrp-backend python -m pytest --junit-xml=$GITHUB_WORKSPACE/test-results.xml
-      env:
-        GITHUB_WORKSPACE: $GITHUB_WORKSPACE
     - name: Upload JUnit XML as artifact
       uses: actions/upload-artifact@v2
       with:
@@ -60,8 +58,6 @@ jobs:
       if: always()
       with:
         files: |
-          test-results/**/*.xml
-          test-results/**/*.trx
-          test-results/**/*.json
+          */test-results.xml
             
         
