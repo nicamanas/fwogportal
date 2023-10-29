@@ -50,7 +50,8 @@ jobs:
         docker-compose exec -it sbrp-backend python -m pytest --junit-xml=test-results.xml 
     - name: Check Directory
       run: |
-        docker exec -it backend_sbrp-backend_1 /bin/sh -c "ls /"
+        cd backend
+        docker-compose exec -it sbrp-backend /bin/sh -c "ls /"
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2.11.0
       if: always()
