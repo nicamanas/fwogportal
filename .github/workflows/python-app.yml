@@ -26,9 +26,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: cd into backend directory
-      run: |
-        cd backend
     - name: Install dependencies
       run: |
         cd backend/src
@@ -48,6 +45,7 @@ jobs:
         docker-compose up -d
     - name: Run Tests
       run: |
+        cd backend
         docker-compose logs -f -t backend_sbrp-backend_1
         docker-compose exec -it backend_sbrp-backend_1 python -m pytest --junit-xml=test-results.xml
     - name: Publish Test Results
