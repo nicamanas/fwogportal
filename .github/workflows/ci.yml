@@ -42,7 +42,7 @@ jobs:
       uses: adambirds/docker-compose-action@v1.3.0
       with:
         # relative path to compose file(s)
-        # compose-file: # optional, default is ./docker-compose.yml
+        compose-file: "./backend/docker-compose.yml" # optional, default is ./docker-compose.yml
         # additional options to pass to `docker-compose` command
         # compose-flags: # optional, default is 
         # additional options to pass to `docker-compose down` command
