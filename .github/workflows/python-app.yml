@@ -50,6 +50,11 @@ jobs:
         docker-compose exec -it sbrp-backend python -m pytest --junit-xml=$GITHUB_WORKSPACE/test-results.xml
       env:
         GITHUB_WORKSPACE: $GITHUB_WORKSPACE
+    - name: Upload JUnit XML as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: $GITHUB_WORKSPACE/test-results.xml
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2.11.0
       if: always()
