@@ -46,7 +46,7 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker-compose logs -f -t
+        docker-compose logs -f -t backend_sbrp-backend_1
     - name: Run Tests
       run: |
         docker-compose exec -it backend_sbrp-backend_1 python -m pytest --junit-xml=test-results.xml
