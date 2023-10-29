@@ -43,5 +43,5 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker exec -it sbrp-backend bash -c "pytest"
+        docker exec -it backend_sbrp-backend_1 bash -c "pytest"
         
