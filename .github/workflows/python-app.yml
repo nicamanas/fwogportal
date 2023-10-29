@@ -46,7 +46,7 @@ jobs:
     - name: Run Tests
       run: |
         cd backend
-        docker-compose logs -f -t backend_sbrp-backend_1
+        docker-compose logs -f -t sbrp-backend
         docker-compose exec -it backend_sbrp-backend_1 python -m pytest --junit-xml=test-results.xml
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2.11.0
