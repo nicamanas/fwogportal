@@ -35,6 +35,8 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Compose Docker Application and Run Tests
+      run: |
+        cd backend
       # You may pin to the exact commit or the version.
       # uses: adambirds/docker-compose-action@cf2e51f76beacad15b1046de89ee2eb22ea70bac
       uses: adambirds/docker-compose-action@v1.3.0
