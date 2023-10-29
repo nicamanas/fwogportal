@@ -52,4 +52,12 @@ jobs:
         # Name of the container to run tests in.
         test-container: "sbrp-backend" # optional
         # The command to use to execute tests.
-        test-command: "python -m pytest"
+        test-command: "python -m pytest --junit-xml='./test-results.xml'"
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: |
+          test-results/**/*.xml
+          test-results/**/*.trx
+          test-results/**/*.json
