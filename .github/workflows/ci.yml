@@ -56,6 +56,10 @@ jobs:
         test-container: "sbrp-backend" # optional
         # The command to use to execute tests.
         test-command: "python -m pytest --junit-xml='${{ github.workspace }}/test-results.xml'"
+    - name: publish artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: ${{ github.workspace }}
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
