@@ -45,5 +45,6 @@ jobs:
         docker-compose up -d
     - name: Test with pytest
       run: |
-        docker-compose exec backend pip3 install pytest
-        docker-compose exec backend pytest
+        cd backend/src
+        pytest
+        
