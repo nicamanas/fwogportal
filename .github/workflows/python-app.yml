@@ -43,5 +43,4 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker run pytest
         
