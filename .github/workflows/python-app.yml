@@ -45,13 +45,6 @@ jobs:
       run: |
         docker cp backend_sbrp-test_1:/pytest-report.xml .
         docker cp backend_sbrp-test_1:/pytest-coverage.txt .
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v3
-      with:
-        name: pytest-report
-        path: 
-          - ./pytest-report.html
-          - ./pytest-coverage.txt
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
