@@ -38,5 +38,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Create Docker Containers and Run Tests
       run: |
-        docker-compose-up -d
+        docker-compose up -d
         docker-compose exec -T sbrp-backend python -m pytest --junit-xml=pytest-report.xml
