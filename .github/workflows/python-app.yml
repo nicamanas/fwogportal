@@ -45,7 +45,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pytest-report
-        path: ${{ github.workspace }}/output/code-coverage.html
+        path: ${{ github.workspace }}/output/pytest-report.html
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
