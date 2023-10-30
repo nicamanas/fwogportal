@@ -45,7 +45,7 @@ jobs:
         # relative path to compose file(s)
         compose-file: "./backend/docker-compose.yml" # optional, default is ./docker-compose.yml
         # additional options to pass to `docker-compose` command
-        compose-flags: "-T" # optional, default is 
+        # compose-flags: "-T" # optional, default is 
         # additional options to pass to `docker-compose down` command
         # down-flags: # optional, default is 
         # services to perform docker-compose up
@@ -60,6 +60,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         path: ${{ github.workspace }}
+        name: test-results
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
