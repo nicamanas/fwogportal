@@ -22,6 +22,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Containerized Build
+      uses: ./.github/actions/sbrp
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -45,7 +47,7 @@ jobs:
         # relative path to compose file(s)
         compose-file: "./backend/docker-compose.yml" # optional, default is ./docker-compose.yml
         # additional options to pass to `docker-compose` command
-        # compose-flags: # optional, default is 
+        compose-flags: "-T" # optional, default is 
         # additional options to pass to `docker-compose down` command
         # down-flags: # optional, default is 
         # services to perform docker-compose up
@@ -56,7 +58,7 @@ jobs:
         test-container: "sbrp-backend" # optional
         # The command to use to execute tests.
         test-command: "python -m pytest --junit-xml='${{ github.workspace }}/test-results.xml'"
-    - name: publish artifact
+    - name: Publish Artifact
       uses: actions/upload-artifact@v2
       with:
         path: ${{ github.workspace }}
