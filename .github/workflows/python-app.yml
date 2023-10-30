@@ -42,10 +42,10 @@ jobs:
         docker-compose up -d
         docker-compose exec -T sbrp-backend python -m pytest --junit-xml=pytest-report.xml --cov-report=term-missing:skip-covered --cov=app tests/ | tee pytest-coverage.txt
     - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@main
-        with:
-          pytest-coverage-path: ./pytest-coverage.txt
-          junitxml-path: ./pytest.xml  
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-coverage-path: ./pytest-coverage.txt
+        junitxml-path: ./pytest.xml  
     - name: Shut Down Containers
       run: |
         cd backend
