@@ -55,12 +55,9 @@ jobs:
         # Name of the container to run tests in.
         test-container: "sbrp-backend" # optional
         # The command to use to execute tests.
-        test-command: "python -m pytest --junit-xml='${{ github.workspace }}/test-results.xml'"
-    - name: Publish Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        path: ${{ github.workspace }}
-        name: test-results
+        test-command: "python -m pytest --junit-xml=test-results.xml"
+      run: |
+        docker cp sbrp-backend:/src/test-results.xml
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
