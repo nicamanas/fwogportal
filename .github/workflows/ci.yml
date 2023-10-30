@@ -56,8 +56,8 @@ jobs:
         test-container: "sbrp-backend" # optional
         # The command to use to execute tests.
         test-command: "python -m pytest --junit-xml=test-results.xml"
-      run: |
-        docker cp sbrp-backend:/src/test-results.xml
+        run: |
+          docker cp sbrp-backend:/src/test-results.xml
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
