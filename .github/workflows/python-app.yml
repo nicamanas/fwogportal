@@ -44,7 +44,7 @@ jobs:
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
-        pytest-xml-coverage-path: ./pytest-report.xml
+        pytest-xml-coverage-path: pytest-report.xml
     - name: Shut Down Containers
       run: |
         cd backend
