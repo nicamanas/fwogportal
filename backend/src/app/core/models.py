@@ -5,7 +5,8 @@ from sqlalchemy.dialects.mysql import JSON
 from sqlalchemy.sql import func
 from datetime import datetime, timedelta
 
-from app.core.database import Base
+# from app.core.database import Base
+from ..core.database import Base
 
 # Enums and Constants
 
@@ -261,6 +262,15 @@ class SkillDetailsSBRP(Base):
         Enum(*[e.value for e in SkillStatus]), default=SkillStatus.ACTIVE.value)
 
     def __init__(self, skill_id, skill_name, skill_status):
+        if not isinstance(skill_id, int):
+            raise TypeError("skill_id must be an integer")
+        if not isinstance(skill_name, str):
+            raise TypeError("skill_name must be a string")
+        if not isinstance(skill_status, str):
+            raise TypeError("skill_status must a string")
+        if skill_status not in [e.value for e in SkillStatus]:
+            raise ValueError("skill_status must be one of 'active' or 'inactive'")
+        
         self.skill_id = skill_id
         self.skill_name = skill_name
         self.skill_status = skill_status
