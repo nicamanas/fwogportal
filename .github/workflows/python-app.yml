@@ -40,16 +40,16 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker-compose exec -T sbrp-backend 'python -m pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=app tests/ | tee pytest-coverage.txt'
-    - name: Copy file from Docker Container to Github Actions
-      run: |
-        docker cp backend_sbrp-test_1:/pytest-report.xml .
-        docker cp backend_sbrp-test_1:/pytest-coverage.txt .
+        docker run -v /tmp:/tmp $IMAGE_TAG python3 -m pytest --cov-report=term-missing:skip-covered --junitxml=/tmp/pytest.xml --cov=src tests/ | tee /tmp/pytest-coverage.txt
+    # - name: Copy file from Docker Container to Github Actions
+    #   run: |
+    #     docker cp backend_sbrp-test_1:/pytest-report.xml .
+    #     docker cp backend_sbrp-test_1:/pytest-coverage.txt .
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
-        pytest-coverage-path: ./pytest-coverage.txt
-        junitxml-path: ./pytest.xml
+        pytest-coverage-path: /tmp/pytest-coverage.txt
+        junitxml-path: /tmp/pytest.xml
     - name: Shut Down Containers
       run: |
         cd backend
