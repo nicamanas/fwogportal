@@ -40,6 +40,3 @@ jobs:
       run: |
         docker-compose-up -d
         docker-compose exec -T sbrp-backend python -m pytest --junit-xml=pytest-report.xml
-    - name: Test with pytest
-      run: |
-        pytest
