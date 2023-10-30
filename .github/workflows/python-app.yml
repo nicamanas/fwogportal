@@ -40,7 +40,7 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker run -v /tmp:/tmp backend_sbrp-test_1 python3 -m pytest --cov-report=term-missing:skip-covered --junitxml=/tmp/pytest.xml --cov=src tests/ | tee /tmp/pytest-coverage.txt
+        docker run -v /tmp:/tmp backend_sbrp-test python3 -m pytest --cov-report=term-missing:skip-covered --junitxml=/tmp/pytest.xml --cov=src tests/ | tee /tmp/pytest-coverage.txt
     # - name: Copy file from Docker Container to Github Actions
     #   run: |
     #     docker cp backend_sbrp-test_1:/pytest-report.xml .
