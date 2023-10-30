@@ -40,7 +40,7 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker-compose exec -T sbrp-backend python -m pytest --junit-xml={{ $github.workspace }}.xml
+        docker-compose exec -T sbrp-backend python -m pytest --junit-xml=${{ github.workspace }}.xml
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
