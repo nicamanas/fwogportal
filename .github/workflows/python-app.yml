@@ -40,16 +40,17 @@ jobs:
       run: |
         cd backend
         docker-compose up -d
-        docker-compose exec -T sbrp-backend python -m pytest --junit-xml=${{ github.workspace }}/output/pytest-report.xml
+        docker-compose exec -T sbrp-backend python -m pytest --junit-xml=/output/pytest-report.xml
+        docker-compose cp sbrp-backend:/output/pytest-report.xml .
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
       with:
         name: pytest-report
-        path: ${{ github.workspace }}/output/pytest-report.html
+        path: ./pytest-report.html
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
-        pytest-xml-coverage-path: /output/pytest-report.xml
+        pytest-xml-coverage-path: ./pytest-report.xml
     - name: Shut Down Containers
       run: |
         cd backend
