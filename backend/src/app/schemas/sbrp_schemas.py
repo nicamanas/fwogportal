@@ -82,7 +82,7 @@ class RoleListingRoleApplications(BaseModel):
     role_listing_creator: int
     role_listing_ts_create: datetime
     role_listing_updater: int
-    role_listing_ts_update: datetime
+    role_listing_ts_update: Optional[datetime] = None
     role_applications: List[StaffProfileResponse]
     class Config:
         orm_mode = True
