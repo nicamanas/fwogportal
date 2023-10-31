@@ -306,6 +306,16 @@ class StaffSkillsSBRP(Base):
     skill = relationship("SkillDetails", back_populates="staff_skills_sbrp_skill")
 
     def __init__(self, staff_id, skill_id, ss_status):
+        if not isinstance(staff_id, int):
+            raise TypeError("staff_id must be an integer")
+        if not isinstance(skill_id, int):
+            raise TypeError("skill_id must be an integer")
+        if not isinstance(ss_status, str):
+            raise TypeError("ss_status must a string")
+        if ss_status not in [e.value for e in StaffSkillsStatus]:
+            raise ValueError("ss_status must be one of 'active', 'unverified' or 'in-progress'")
+            
         self.staff_id = staff_id
         self.skill_id = skill_id
         self.ss_status = ss_status
+        
