@@ -1,8 +1,11 @@
 import logging
 from sqlalchemy.orm import Session
-from app.setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings, staff_skills
-from app.crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud, sbrp_staff_skills_crud
-from app.schemas import ljps_schemas, lms_schemas, sbrp_schemas
+# from app.setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings, staff_skills
+# from app.crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud, sbrp_staff_skills_crud
+# from app.schemas import ljps_schemas, lms_schemas, sbrp_schemas
+from ..setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings, staff_skills, role_applications
+from ..crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud, sbrp_staff_skills_crud, roleapplications
+from ..schemas import ljps_schemas, lms_schemas, sbrp_schemas
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +66,13 @@ def init_db(db: Session) -> None:
         for role_listing in role_listings.DEFAULT_ROLE_LISTINGS:
             in_role_listing = sbrp_schemas.RoleListingsRequest(**role_listing)
             rolelistings_crud.create_role_listing(payload=in_role_listing, db=db)
-
+    
+    all_role_applications = roleapplications.get_all_role_applications(db=db)
+    if not all_role_applications:
+        logger.info("Creating default role_applications")
+        for role_application in role_applications.DEFAULT_ROLE_APPLICATIONS:
+            in_role_application = sbrp_schemas.RoleApplicationRequest(**role_application)
+            roleapplications.create_role_application(payload=in_role_application, db=db)
 
     
     

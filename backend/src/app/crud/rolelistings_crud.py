@@ -1,7 +1,10 @@
 from sqlalchemy.orm import Session
 from typing import List, Tuple
-from app.core import models
-from app.schemas import sbrp_schemas as schemas
+# from app.core import models
+# from app.schemas import sbrp_schemas as schemas
+
+from ..core import models
+from ..schemas import sbrp_schemas as schemas
 from datetime import datetime
 
 def get_role_listing_by_id(db: Session, id: int) -> List[Tuple[models.RoleListings, str, str, str, str]]:

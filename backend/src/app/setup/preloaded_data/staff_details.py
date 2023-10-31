@@ -38,5 +38,15 @@ DEFAULT_STAFF_DETAILS = [
     "phone": "65-5824-7888",
     "biz_address": "1 Scotts Rd, #24-10 Shaw Centre, Singapore 228208",
     "sys_role": "inactive"
+  },
+  {
+    "staff_id": 5,
+    "fname": "Thomas",
+    "lname": "Lee",
+    "dept": "SALES",
+    "email": "thomas_lee@all-in-one.com.sg",
+    "phone": "65-5824-7888",
+    "biz_address": "1 Scotts Rd, #24-10 Shaw Centre, Singapore 228208",
+    "sys_role": "staff"
   }
 ]
