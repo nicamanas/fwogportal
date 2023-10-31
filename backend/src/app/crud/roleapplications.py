@@ -18,12 +18,14 @@ def get_role_application_by_id(db: Session, id: int) -> models.RoleApplications:
     ).first()
     
 def create_role_application(db: Session, payload: schemas.RoleApplicationRequest) -> models.RoleApplications:
+    test_payload = (payload.dict())
+    print(test_payload)
     role_application = models.RoleApplications(**payload.dict())
     
     # check if this applicant has applied for the role listing previously
     previous_role_application = db.query(
         models.RoleApplications
-    ).filter(models.RoleApplications.role_listing_id == role_application.role_listing_id and models.RoleApplications.staff_id == role_application.staff_id and models.RoleApplications.role_app_status == 'active').first()
+    ).filter(models.RoleApplications.role_listing_id == role_application.role_listing_id, models.RoleApplications.staff_id == role_application.staff_id, models.RoleApplications.role_app_status == 'active').first()
     if previous_role_application:
         raise Exception("You have already applied for this role listing.")
     
