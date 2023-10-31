@@ -96,7 +96,7 @@ export default function Profile() {
       snackbarMsg={snackbarMsg}
       isSuccess={snackbarMsg=="Skill deleted from profile successfully!" ? true : false}
     />
-    <Paper sx={{ padding: 4 }}>
+    <Paper sx={{ padding: 4, maxWidth: "1000px", margin: "auto" }} >
       <DeleteConfirmation
         openDeleteConfirmation={openDeleteConfirmation}
         handleDeleteClose={handleDeleteClose}
@@ -104,7 +104,7 @@ export default function Profile() {
         skillname={setSkillToDelete != null ? skillsMapping[skillToDelete] : ""}
       />
       <Stack spacing={2}>
-        <Typography variant="h6">Profile</Typography>
+        <Typography variant="h6">My Profile</Typography>
         <Typography>
           <strong>Name:</strong> {formatName(profile.fname, profile.lname)}
         </Typography>
@@ -133,7 +133,7 @@ export default function Profile() {
                 sx={{ padding: 1 }}
                 disableElevation
                 startIcon={<AddIcon />}
-                onClick={() => {}}
+                onClick={() => {navigate("/profile/addskill")}}
               >
                 Add Skill
               </Button>

@@ -3,9 +3,12 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
 
-from app.crud import sbrp_staff_profile_crud, sbrp_staff_skills_crud
-from app.schemas import sbrp_schemas as schemas
-from app.core.database import SessionLocal
+# from app.crud import sbrp_staff_profile_crud, sbrp_staff_skills_crud
+# from app.schemas import sbrp_schemas as schemas
+# from app.core.database import SessionLocal
+from ..crud import sbrp_staff_profile_crud, sbrp_staff_skills_crud
+from ..schemas import sbrp_schemas as schemas
+from ..core.database import SessionLocal
 
 router = APIRouter()
 

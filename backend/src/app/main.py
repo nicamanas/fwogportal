@@ -1,15 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import ping, rolelistings, lms, ljps, sbrp_skill_details, sbrp_staff_profile, roleapplications
-from app.core.models import Base
-from app.core.database import engine, SessionLocal
-from app.setup.db_prestart import init_db
+from .api import ping, rolelistings, lms, ljps, sbrp_skill_details, sbrp_staff_profile, roleapplications
+from .core.models import Base
+from .core.database import engine, SessionLocal
+from .setup.db_prestart import init_db
 # TODO: Edit presetup
 
 Base.metadata.create_all(bind=engine)
 db = SessionLocal()
 init_db(db)
 app = FastAPI()
+
+def get_db():
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
 
 app.add_middleware(
     CORSMiddleware,

@@ -8,6 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Grid } from "@mui/material";
 import { RoleListingAPI } from "../../apis/rolelistingAPI";
 import { useNavigate } from "../../router.js";
@@ -49,7 +52,7 @@ const columns = [
   {
     id: "role_listing_close",
     label: "Closing date",
-    minWidth: 40,
+    minWidth: 150,
     align: "right",
     format: (role_listing_close: string) =>
       new Date(role_listing_close).toLocaleDateString("en-SG", {
@@ -112,6 +115,9 @@ export default function AdminPanel() {
                     {column.label}
                   </TableCell>
                 ))}
+                <TableCell align="right">
+                  View Listing
+                </TableCell>
                 <TableCell key="edit" align="right" style={{ minWidth: 100 }}>
                   Edit/Delete
                 </TableCell>
@@ -139,17 +145,22 @@ export default function AdminPanel() {
                           </TableCell>
                         );
                       })}
-                      <TableCell>
+                      <TableCell align="right">
                         <Button
-                          variant="contained"
                           color="primary"
-                          onClick={() => handleEditClicked(row.role_listing_id)}
+                          variant="contained"
+                          onClick={() => navigate("/rolelistings/:id", { params: { id: row.role_listing_id.toString() } })}
                         >
-                          Edit
+                          View
                         </Button>
-                        <Button variant="contained" color="warning">
-                          Delete
-                        </Button>
+                      </TableCell>
+                      <TableCell align="right" style={{ minWidth: '120px'}}>
+                        <IconButton color="primary" onClick={() => handleEditClicked(row.role_listing_id)}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton color="error" onClick={() => {}}>
+                          <DeleteIcon />
+                        </IconButton>
                       </TableCell>
                     </TableRow>
                   );

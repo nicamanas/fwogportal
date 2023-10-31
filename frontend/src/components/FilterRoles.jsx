@@ -20,7 +20,7 @@ export default function FilterRoles({
   sx,
 }) {
   return (
-    <Box sx={{mx:3, my:7}}>
+    <Box sx={{mx:3, mb: 4}}>
       <Typography variant="h5" marginBottom={3}>
         Search Role Listings by Skills
       </Typography>
