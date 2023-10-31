@@ -1,11 +1,10 @@
 from sqlalchemy import func
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List
 from fastapi.encoders import jsonable_encoder
-# from app.core import models
-# from app.schemas import sbrp_schemas as schemas
 from ..core import models
 from ..schemas import sbrp_schemas as schemas
+from .sbrp_staff_profile_crud import get_staff_profile_by_id
 
 def get_all_role_applications(db: Session) -> List[models.RoleApplications]:
     return db.query(
@@ -54,3 +53,28 @@ def delete_role_application(db: Session, id: int) -> models.RoleApplications:
     db.delete(role_application)
     db.commit()
     return role_application
+
+def get_role_applications_by_role_listing_id(db: Session, id: int) -> List[models.RoleApplications]:
+    role_applications = db.query(
+        models.RoleListings
+        ).options(
+            joinedload(models.RoleListings.role_app_listing_source)
+        ).filter(
+            models.RoleListings.role_listing_id == id
+        ).first()
+    
+    if role_applications:
+        role_applications_dict = role_applications.__dict__
+        role_applications_dict['role_applications'] = []
+        applicants = role_applications_dict.pop('role_app_listing_source')
+        for applicant in applicants:
+            applicant_profile = get_staff_profile_by_id(db=db, id=applicant.staff_id)
+            role_applications_dict['role_applications'].append(applicant_profile)
+
+                
+        del role_applications_dict['_sa_instance_state']
+        return role_applications_dict
+    
+    return None
+
+

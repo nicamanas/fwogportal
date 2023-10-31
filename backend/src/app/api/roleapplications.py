@@ -37,7 +37,6 @@ def get_role_application_by_id(id: int, db: Session = Depends(get_db)):
 def create_role_application(*, db: Session = Depends(get_db), payload: schemas.RoleApplicationRequest):
     try:
         role_application = crud.create_role_application(db=db, payload=payload)
-        print(role_application)
         return role_application
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -53,3 +52,10 @@ def delete_role_application(id: int, db: Session = Depends(get_db)):
     role_application = crud.delete_role_application(db=db, id=id)
     print(role_application)
     return role_application
+
+@router.get("/listing/{id}", response_model=schemas.RoleListingRoleApplications)
+def get_role_applications_by_role_listing_id(id: int, db: Session = Depends(get_db)):
+    role_applicants = crud.get_role_applications_by_role_listing_id(db=db, id=id)
+    if not role_applicants:
+        raise HTTPException(status_code=404, detail="No role listing found")
+    return role_applicants
