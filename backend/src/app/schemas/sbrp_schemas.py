@@ -77,12 +77,12 @@ class RoleListingRoleApplications(BaseModel):
     role_id: int
     role_listing_desc: str
     role_listing_source: int
-    role_listing_open = datetime
-    role_listing_close = datetime
-    role_listing_creator = int
-    role_listing_ts_create = datetime
-    role_listing_updater = int
-    role_listing_ts_update = datetime
+    role_listing_open: datetime
+    role_listing_close: datetime
+    role_listing_creator: int
+    role_listing_ts_create: datetime
+    role_listing_updater: int
+    role_listing_ts_update: datetime
     role_applications: List[StaffProfileResponse]
     class Config:
         orm_mode = True
