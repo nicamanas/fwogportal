@@ -8,12 +8,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { RoleApplicationAPI } from '../../apis/roleApplicationAPI';
 import { RoleListingAPI } from '../../apis/rolelistingAPI';
 import { useNavigate } from '../../router.ts';
+import { UserStorage } from '../../utils/userLocalStorageUtils';
 
 const columns = [
   { id: 'role_app_id', label: 'Application ID', align: 'center'},
@@ -29,10 +27,11 @@ function StaffApplications() {
     const navigate = useNavigate();
   
     useEffect(() => {
+        const user = UserStorage.getUser()
         RoleListingAPI.getAll().then((fetchedListings) => {
             setListings(fetchedListings)
         });
-        RoleApplicationAPI.getall().then((fetchedApplications) => {
+        RoleApplicationAPI.getAllByStaffId(user.id).then((fetchedApplications) => {
         const activeApplications = fetchedApplications.filter(application => application.role_app_status === "active");
         setApplications(activeApplications);
       });

@@ -18,6 +18,13 @@ def get_role_application_by_id(db: Session, id: int) -> models.RoleApplications:
         models.RoleApplications.role_application_id == id
     ).first()
     
+def get_all_role_applications_by_staff_id(db: Session, staff_id: int) -> List[models.RoleApplications]:
+    return db.query(
+        models.RoleApplications
+    ).filter(
+        models.RoleApplications.staff_id == staff_id
+    ).all()
+    
 def create_role_application(db: Session, payload: schemas.RoleApplicationRequest) -> models.RoleApplications:
     test_payload = (payload.dict())
     print(test_payload)
