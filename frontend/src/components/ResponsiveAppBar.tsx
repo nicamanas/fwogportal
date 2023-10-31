@@ -173,9 +173,7 @@ export default function ResponsiveAppBar() {
 									[
 										"Edit Listings",
 										"Skill Catalogue",
-									].includes(pageName)) ||
-								(currentUser.sys_role != "staff" &&
-									["My Applications"].includes(pageName))
+									].includes(pageName))
 							) {
 								return null
 							}
