@@ -33,6 +33,12 @@ def get_role_application_by_id(id: int, db: Session = Depends(get_db)):
     print(raw_results)
     return raw_results
 
+@router.get("/staff/{staff_id}", response_model=List[schemas.RoleApplicationResponse])
+def get_all_role_applications_by_staff_id(staff_id: int, db: Session = Depends(get_db)):
+    raw_results = crud.get_all_role_applications_by_staff_id(db=db, staff_id=staff_id)
+    print(raw_results)
+    return raw_results
+
 @router.post("/", response_model=schemas.RoleApplicationResponse)
 def create_role_application(*, db: Session = Depends(get_db), payload: schemas.RoleApplicationRequest):
     try:

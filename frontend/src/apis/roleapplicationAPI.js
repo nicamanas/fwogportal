@@ -54,6 +54,32 @@ export const RoleApplicationAPI = {
 			throw new Error("Error getting data: ", error)
 		}
 	},
+	getAllByStaffId: async function (staffId) {
+		try {
+			const response = await fetch(
+				`http://localhost:8003/roleapplications/staff/${staffId}`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			)
+			const responseData = await response.json()
+
+			if (!response.ok) {
+				throw new Error(
+					"Error getting data with status: ",
+					response.status,
+					responseData
+				)
+			} else {
+				return responseData
+			}
+		} catch (error) {
+			throw new Error("Error getting data: ", error)
+		}
+	},
 	withdraw: async function (appId) {
 		try {
 			const response = await fetch(
@@ -80,7 +106,7 @@ export const RoleApplicationAPI = {
 			throw new Error("Error getting data: ", error)
 		}
 	},
-  getByRoleListingId: async function (roleListingId) {
+	getByRoleListingId: async function (roleListingId) {
 		try {
 			const response = await fetch(
 				`http://localhost:8003/roleapplications/listing/${roleListingId}`,
