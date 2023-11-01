@@ -25,6 +25,11 @@ def get_staff_profile_by_id(id: int, db: Session = Depends(get_db)):
     print(staff_profile)
     return staff_profile
 
+@router.get("/", response_model=List[schemas.StaffProfileResponse])
+def get_all_staff_profiles(db: Session = Depends(get_db)):
+    staff_profiles = sbrp_staff_profile_crud.get_all_staff_profiles(db=db)
+    return staff_profiles
+
 @router.delete("/{staff_id}/skill/{skill_id}")
 def delete_staff_skill(staff_id: int, skill_id: int, db: Session = Depends(get_db)):
     staff_skill = sbrp_staff_skills_crud.get_staff_skill_by_ids(db=db, staff_id=staff_id, skill_id=skill_id)
