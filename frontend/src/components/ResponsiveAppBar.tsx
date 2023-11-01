@@ -48,6 +48,7 @@ export default function ResponsiveAppBar() {
 		"Edit Listings": () => navigate("/editlistings"),
 		"Skill Catalogue": () => navigate("/skillcatalogue"),
 		"My Applications": () => navigate("/staffapplications"),
+		"Search for Candidates": () => navigate("/candidatesearch"),
 	}
 
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
@@ -173,6 +174,7 @@ export default function ResponsiveAppBar() {
 									[
 										"Edit Listings",
 										"Skill Catalogue",
+										"Search for Candidates",
 									].includes(pageName))
 							) {
 								return null
