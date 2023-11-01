@@ -2,10 +2,12 @@ import React, { useState} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 
-function AddProfileSkillForm( { allSkills }) {
+function AddProfileSkillForm( { allSkills, staffSkills, user }) {
+  const staffSkillIds = staffSkills.map(skill => skill.skill_id);
+  const skillsNotInStaff = allSkills.filter(skill => !staffSkillIds.includes(skill.skill_id));
+  console.log(skillsNotInStaff)
     const initialFormData = {
-        skill_name: "",
-        skill_status: "",
+        skill_id: '', 
     };
 
     const [formData, setFormData] = useState(initialFormData);
@@ -20,15 +22,12 @@ function AddProfileSkillForm( { allSkills }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        const generateId = () => Math.floor(Math.random() * 1000000000);
 
         const newSkill = {
             ...formData,
-            skill_id: generateId()
         }
 
-        console.log(newSkill);
+        console.log(formData.skill_id)
 
         try {
             const response = await fetch("http://localhost:8003/skill_details", { 
@@ -94,9 +93,9 @@ function AddProfileSkillForm( { allSkills }) {
                 <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <FormControl fullWidth sx={{ m: 1 }}>
                       <InputLabel id="skill_name">Skill Name</InputLabel>
-                        <Select name="skill_status" labelId="skill_status" id="skill_status" value={formData.skill_status} onChange={handleInputChange} label="Skill Status">
+                        <Select name="skill_id" labelId="skill_id" id="skill_id" onChange={handleInputChange} label="skill_id">
                           {
-                            allSkills.map((skill) => <MenuItem value={skill.skill_id}>{skill.skill_name}</MenuItem>)
+                            skillsNotInStaff.map((skill) => <MenuItem value={skill.skill_id}>{skill.skill_name}</MenuItem>)
                           }
                         </Select>
                     </FormControl>
