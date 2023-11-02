@@ -28,5 +28,11 @@ DEFAULT_STAFF_SKILLS = [
         "staff_id": 3,
         "skill_id": 3,
         "ss_status": "in-progress"
+    },
+    {
+        "staff_id": 4, 
+        "skill_id": 1,
+        "ss_status": "active"
     }
+
 ]

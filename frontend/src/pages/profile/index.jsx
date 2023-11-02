@@ -144,13 +144,26 @@ export default function Profile() {
             <Typography display="inline" sx={{ flexGrow: 1 }}>
               {skillsMapping[skill.skill_id]}
             </Typography>
+            {
+              
+            }
+            <Button
+                variant="outlined"
+                sx={{padding:1, marginRight: 1}}
+                startIcon={<AddIcon />}
+                onClick={() => {navigate("/profile/addskill")}}
+              >
+                Upload Certificate
+            </Button>
             <Chip label={skill.ss_status} key={index} />
+            
             <IconButton color="error" onClick={() => {
               setOpenDeleteConfirmation(true)
               setSkillToDelete(skill.skill_id)
               }}>
               <DeleteIcon />
             </IconButton>
+
           </Grid>
         ))}
       </Stack>

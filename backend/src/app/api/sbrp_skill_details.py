@@ -37,7 +37,6 @@ def get_skill_details_by_id(id: int, db: Session = Depends(get_db)):
 @router.post("/", response_model=schemas.SkillDetails, status_code=201)
 def create_skill_details(*, db: Session = Depends(get_db), payload: schemas.SkillDetails):
     skill = crud.create_skill_details(db=db, payload=payload)
-    print(skill)
     return skill
 
 @router.put("/{id}", response_model=schemas.SkillDetails)

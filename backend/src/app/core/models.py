@@ -1,5 +1,5 @@
 import enum
-from sqlalchemy import Column, Integer, String, ForeignKey, Enum, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, Enum, DateTime, LargeBinary
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import JSON
 from sqlalchemy.sql import func
@@ -301,11 +301,12 @@ class StaffSkillsSBRP(Base):
         'skill_details.skill_id'), primary_key=True)
     ss_status = Column(Enum(
         *[e.value for e in StaffSkillsStatus]), default=StaffSkillsStatus.ACTIVE.value)
+    skill_certificate = Column(LargeBinary, nullable=True)
 
     staff = relationship("StaffDetails", back_populates="staff_skills_sbrp_staff", primaryjoin='and_(StaffSkillsSBRP.staff_id == StaffDetails.staff_id)')
     skill = relationship("SkillDetails", back_populates="staff_skills_sbrp_skill")
 
-    def __init__(self, staff_id, skill_id, ss_status):
+    def __init__(self, staff_id, skill_id, ss_status, skill_certificate=None):
         if not isinstance(staff_id, int):
             raise TypeError("staff_id must be an integer")
         if not isinstance(skill_id, int):
@@ -318,4 +319,4 @@ class StaffSkillsSBRP(Base):
         self.staff_id = staff_id
         self.skill_id = skill_id
         self.ss_status = ss_status
-        
+        self.skill_certificate = skill_certificate

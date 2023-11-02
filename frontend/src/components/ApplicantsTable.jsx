@@ -103,15 +103,15 @@ export default function ApplicantsTable({ roleListing, roleListingApplications, 
                         {row.skills.map((skill) => {
                           console.log(skills)
                           const skill_name = skills.find((s) => s.skill_id === skill.skill_id).skill_name
-                          if (skillsRequired.includes(skill_name)) {
-                            return (
-                              <Chip label={skill_name} color="secondary" />
-                            );
-                          } else {
+                          // if (skillsRequired.includes(skill_name)) {
+                          //   return (
+                          //     <Chip label={skill_name} color="secondary" />
+                          //   );
+                          // } else {
                             return (
                               <Chip label={skill_name}/>
                             );
-                          }
+                          // }
                         })}
                       </TableCell>
                       <TableCell align="right">

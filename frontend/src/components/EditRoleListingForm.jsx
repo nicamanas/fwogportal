@@ -64,6 +64,16 @@ export default function EditRoleListingForm({roleListing}) {
         //     "role_listing_creator": 0, (TO ADD!)
         //     "role_listing_updater": 0
         // }
+        const role_listing_open = Date.parse(formData.role_listing_open);
+        const role_listing_close = Date.parse(formData.role_listing_close);
+
+        if (role_listing_close < role_listing_open) {
+          console.error("Role listing close is before open");
+          setSnackBarMsg("Close date must not be before open date!");
+          setOpenSnackbar(true)
+          return;
+        }
+        
         formData.role_listing_open = `${formData.role_listing_open}T00:00:00.000Z`;
         formData.role_listing_close = `${formData.role_listing_close}T00:00:00.000Z`;
         
@@ -145,7 +155,7 @@ export default function EditRoleListingForm({roleListing}) {
             onClose={handleCloseSnackbar}>
                 <Alert 
                 onClose={handleCloseSnackbar} 
-                severity="success" 
+                severity={snackbarMsg === "Successfully edited listing! Bringing you there..." ? "success" : "error"}
                 sx={{ width: '100%' }}>
                     {snackbarMsg}
                 </Alert>

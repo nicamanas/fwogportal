@@ -1,11 +1,14 @@
 import React, { useState} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import { StaffProfileAPI } from '../apis/staffProfileAPI';
+import { useNavigate } from 'react-router-dom';
 
 function AddProfileSkillForm( { allSkills, staffSkills, user }) {
-  const staffSkillIds = staffSkills.map(skill => skill.skill_id);
-  const skillsNotInStaff = allSkills.filter(skill => !staffSkillIds.includes(skill.skill_id));
-  console.log(skillsNotInStaff)
+    const navigate = useNavigate();
+    const staffSkillIds = staffSkills.map(skill => skill.skill_id);
+    const skillsNotInStaff = allSkills.filter(skill => !staffSkillIds.includes(skill.skill_id));
+
     const initialFormData = {
         skill_id: '', 
     };
@@ -23,36 +26,21 @@ function AddProfileSkillForm( { allSkills, staffSkills, user }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newSkill = {
-            ...formData,
-        }
-
         console.log(formData.skill_id)
 
-        try {
-            const response = await fetch("http://localhost:8003/skill_details", { 
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newSkill)
-            });
-            
-            const responseData = await response.json();
-
-            if (!response.ok) {
-                console.error("Error posting data with status:", response.status, responseData);
-                setSnackBarMsg("Error adding skill");
-                setOpenSnackbar(true);
-            } else { 
-                setSnackBarMsg("Added skill successfully!");
-                setFormData(initialFormData);
-                setOpenSnackbar(true);
-            }
-            
-        } catch (error) {
-            console.error("Error creating skill: ", error);
-        }
+        StaffProfileAPI.addSkill(user.id, formData.skill_id)
+          .then((response) => {
+            setFormData(initialFormData);
+            setSnackBarMsg("Skill successfully added!");
+            setOpenSnackbar(true);
+            setTimeout(() => {
+              navigate(0);
+            }, 1500)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+        
 
     }
 
@@ -94,8 +82,9 @@ function AddProfileSkillForm( { allSkills, staffSkills, user }) {
                     <FormControl fullWidth sx={{ m: 1 }}>
                       <InputLabel id="skill_name">Skill Name</InputLabel>
                         <Select name="skill_id" labelId="skill_id" id="skill_id" onChange={handleInputChange} label="skill_id">
-                          {
+                          { skillsNotInStaff.length > 0 ?
                             skillsNotInStaff.map((skill) => <MenuItem value={skill.skill_id}>{skill.skill_name}</MenuItem>)
+                            : <MenuItem value="">No skills to add</MenuItem>
                           }
                         </Select>
                     </FormControl>
