@@ -301,7 +301,7 @@ class StaffSkillsSBRP(Base):
         'skill_details.skill_id'), primary_key=True)
     ss_status = Column(Enum(
         *[e.value for e in StaffSkillsStatus]), default=StaffSkillsStatus.ACTIVE.value)
-    skill_certificate = Column(LargeBinary, nullable=True)
+    skill_certificate = Column(LargeBinary(length=2**32-1), nullable=True)
 
     staff = relationship("StaffDetails", back_populates="staff_skills_sbrp_staff", primaryjoin='and_(StaffSkillsSBRP.staff_id == StaffDetails.staff_id)')
     skill = relationship("SkillDetails", back_populates="staff_skills_sbrp_skill")
