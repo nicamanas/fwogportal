@@ -1,10 +1,14 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional, List
-from .ljps_schemas import StaffSkillsResponse
+from typing import Optional, List, Any
 
 from pydantic import BaseModel
 from enum import Enum
+
+class StaffSkillsStatusEnum(str, Enum):
+    active = "active" 
+    unverified = "unverified"
+    in_progress = "in-progress"
 
 
 class RoleListingsRequest(BaseModel):
@@ -56,6 +60,20 @@ class SysRoleEnum(str, Enum):
     manager = "manager"
     inactive = "inactive"
 
+class SBRPStaffSkillsRequest(BaseModel):
+    staff_id: int
+    skill_id: int
+    ss_status: StaffSkillsStatusEnum
+    skill_certificate: Optional[Any] = None
+
+class SBRPStaffSkillsResponse(BaseModel):
+    staff_id: int
+    skill_id: int
+    ss_status: StaffSkillsStatusEnum
+    has_cert: bool
+    class Config:
+        orm_mode = True
+
 class StaffProfileResponse(BaseModel):
     staff_id: int
     fname: str
@@ -65,7 +83,7 @@ class StaffProfileResponse(BaseModel):
     phone: str
     biz_address: str
     sys_role: SysRoleEnum
-    skills: List[StaffSkillsResponse]
+    skills: List[SBRPStaffSkillsResponse]
     class Config:
         orm_mode = True
 
@@ -86,3 +104,4 @@ class RoleListingRoleApplications(BaseModel):
     role_applications: List[StaffProfileResponse]
     class Config:
         orm_mode = True
+

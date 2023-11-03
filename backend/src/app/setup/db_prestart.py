@@ -1,8 +1,6 @@
 import logging
 from sqlalchemy.orm import Session
-# from app.setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings, staff_skills
-# from app.crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud, sbrp_staff_skills_crud
-# from app.schemas import ljps_schemas, lms_schemas, sbrp_schemas
+
 from ..setup.preloaded_data import skill_details, role_details, role_skills, staff_details, role_listings, staff_skills, role_applications
 from ..crud import ljps_crud, lms_crud, rolelistings_crud, sbrp_skill_details_crud, sbrp_staff_skills_crud, roleapplications
 from ..schemas import ljps_schemas, lms_schemas, sbrp_schemas

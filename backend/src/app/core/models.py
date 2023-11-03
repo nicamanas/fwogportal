@@ -5,7 +5,6 @@ from sqlalchemy.dialects.mysql import JSON
 from sqlalchemy.sql import func
 from datetime import datetime, timedelta
 
-# from app.core.database import Base
 from ..core.database import Base
 
 # Enums and Constants

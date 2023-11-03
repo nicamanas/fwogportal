@@ -2,8 +2,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 from typing import Any, Dict, Union, List, Tuple
 from fastapi.encoders import jsonable_encoder
-# from app.core import models
-# from app.schemas import ljps_schemas as schemas
+
 from ..core import models
 from ..schemas import ljps_schemas as schemas
 
