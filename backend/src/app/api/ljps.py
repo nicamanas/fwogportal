@@ -3,9 +3,6 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-# from app.crud import ljps_crud as crud
-# from app.schemas import ljps_schemas as schemas
-# from app.core.database import SessionLocal
 from ..crud import ljps_crud as crud
 from ..schemas import ljps_schemas as schemas
 from ..core.database import SessionLocal

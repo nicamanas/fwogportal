@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
 
 function SkillCreateForm() {
     const initialFormData = {
@@ -9,6 +10,7 @@ function SkillCreateForm() {
     };
 
     const [formData, setFormData] = useState(initialFormData);
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -49,6 +51,9 @@ function SkillCreateForm() {
                 setSnackBarMsg("Skill created!");
                 setFormData(initialFormData);
                 setOpenSnackbar(true);
+                setTimeout(() => {
+                  navigate("/skillcatalogue")
+                }, 1500)
             }
             
         } catch (error) {
@@ -103,7 +108,7 @@ function SkillCreateForm() {
                             onChange={handleInputChange}
                         />
                     </FormControl>
-                    <FormControl fullWidth sx={{m: 1}}>
+                    <FormControl fullWidth sx={{m: 1}} required>
                         <InputLabel id="skill_status">Skill Status</InputLabel>
                         <Select name="skill_status" labelId="skill_status" id="skill_status" value={formData.skill_status} onChange={handleInputChange} label="Skill Status">
                             <MenuItem value="active">Active</MenuItem>

@@ -1,7 +1,5 @@
 from sqlalchemy.orm import Session
 from typing import List, Tuple
-# from app.core import models
-# from app.schemas import sbrp_schemas as schemas
 
 from ..core import models
 from ..schemas import sbrp_schemas as schemas
