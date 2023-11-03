@@ -149,16 +149,16 @@ export default function IndividualRoleListing({
               <strong>Skills Required: </strong>
               {skills.map((skill) => {
                 const isSkillMatched = userSkills.includes(skill);
-                // if (isSkillMatched) {
-                //   return (
-                //     <Chip
-                //       label={skill}
-                //       key={skill}
-                //       color="secondary"
-                //       sx={{ marginRight: 1 }}
-                //     />
-                //   );
-                // } else {
+                if (isSkillMatched) {
+                  return (
+                    <Chip
+                      label={skill}
+                      key={skill}
+                      color="secondary"
+                      sx={{ marginRight: 1 }}
+                    />
+                  );
+                } else {
                   return (
                     <Chip
                       label={skill}
@@ -172,7 +172,7 @@ export default function IndividualRoleListing({
                       }}
                     />
                   );
-                // }
+                }
               })}
             </Typography>
           </Grid>

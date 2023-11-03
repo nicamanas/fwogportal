@@ -100,31 +100,6 @@ export default function EditRoleListingForm({roleListing}) {
             setSnackBarMsg("Error editing role listing!");
           })
           .finally(() => setOpenSnackbar(true));
-        // try {
-        //     const response = await fetch("http://localhost:8003/rolelistings/", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(roleListing)
-        //     });
-
-        //     const responseData = await response.json();
-
-        //     if (!response.ok) {
-        //         console.error("Error posting data with status:", response.status, responseData);
-        //         setSnackBarMsg("Error creating role listing!");
-        //     } else {
-        //         setSnackBarMsg("Role listing edited! Bringing you there...")
-        //         setFormData(initialFormData); 
-        //         setTimeout(() => {
-        //           navigate("/rolelistings/:id", { params: { id: responseData.role_listing_id } });
-        //         }, 1500)
-        //     }
-        //     setOpenSnackbar(true);
-        // } catch (error) {
-        //     console.error("Error posting data:", error);
-        // }
     }
 
     const [roles, setRoles] = useState([]);
