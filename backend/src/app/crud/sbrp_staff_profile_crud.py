@@ -39,6 +39,11 @@ def get_all_staff_profiles(db: Session):
     for staff_profile in staff_profiles:
         staff_profile_dict = staff_profile.__dict__
         staff_profile_dict['skills'] = staff_profile_dict.pop('staff_skills_sbrp_staff')
+        for skill in staff_profile_dict['skills']:
+            if skill.skill_certificate != None:
+                skill.has_cert = True
+            else:
+                skill.has_cert = False
         del staff_profile_dict['_sa_instance_state']
         staff_profiles_dicts.append(staff_profile_dict)
     

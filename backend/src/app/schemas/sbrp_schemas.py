@@ -5,8 +5,6 @@ from typing import Optional, List, Any
 from pydantic import BaseModel
 from enum import Enum
 
-from .ljps_schemas import StaffSkillsResponse
-
 class StaffSkillsStatusEnum(str, Enum):
     active = "active" 
     unverified = "unverified"
@@ -85,7 +83,7 @@ class StaffProfileResponse(BaseModel):
     phone: str
     biz_address: str
     sys_role: SysRoleEnum
-    skills: List[StaffSkillsResponse]
+    skills: List[SBRPStaffSkillsResponse]
     class Config:
         orm_mode = True
 

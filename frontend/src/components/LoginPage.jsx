@@ -32,19 +32,19 @@ export default function LoginPage() {
     staff: {
       id: 1,
       name: "Tan Ah Gao",
-      password: "123password",
+      password: "password",
       sys_role: "staff"
     }, 
     admin: {
       id: 2,
       name: "Vincent Rex Colins",
-      password: "password123",
+      password: "password",
       sys_role: "admin"
     },
     manager: {
       id: 3,
       name: "Faud Nizam",
-      password: "pass123word",
+      password: "password",
       sys_role: "manager"
     }
   }
@@ -143,9 +143,6 @@ export default function LoginPage() {
               </Grid>
             </Grid>
         </Grid>
-        <Typography>
-          {JSON.stringify(loginInfo)}
-        </Typography>
       </Container>
     </form>
   );
