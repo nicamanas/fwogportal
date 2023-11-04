@@ -59,7 +59,7 @@ export default function CandidateSearch() {
                 setFilteredStaff={setFilteredStaff}
                 />
             </Box>
-            <Box sx={{ maxWidth: '1800px', width: '100%' }}>
+            {filteredStaff.length != 0 ? <Box sx={{ maxWidth: '1800px', width: '100%' }}>
                 <Grid container spacing={6} justifyContent="center">
                 {filteredStaff.length > 0 &&
                     filteredStaff.map((candidate, index) => (
@@ -68,7 +68,12 @@ export default function CandidateSearch() {
                     </Grid>
                     ))}
                 </Grid>
-            </Box>
+            </Box>:
+            <Typography variant="h5" sx={{textAlign: 'center', my: 3}}>
+                No candidates match your selected criteria.
+            </Typography>
+            }
+            
         </Box>
     )
 }
