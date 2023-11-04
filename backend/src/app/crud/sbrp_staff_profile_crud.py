@@ -28,4 +28,20 @@ def get_staff_profile_by_id(db: Session, id: int):
     
     return None
 
+def get_all_staff_profiles(db: Session):
+    staff_profiles = db.query(
+        models.StaffDetails
+        ).options(
+            joinedload(models.StaffDetails.staff_skills_sbrp_staff)
+        ).all()
+    
+    staff_profiles_dicts = []
+    for staff_profile in staff_profiles:
+        staff_profile_dict = staff_profile.__dict__
+        staff_profile_dict['skills'] = staff_profile_dict.pop('staff_skills_sbrp_staff')
+        del staff_profile_dict['_sa_instance_state']
+        staff_profiles_dicts.append(staff_profile_dict)
+    
+    return staff_profiles_dicts
+        
     

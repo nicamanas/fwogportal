@@ -1,9 +1,24 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {Box, Button, InputLabel, FormControl, MenuItem, Select, Snackbar, TextField, Container, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 
 function SkillCreateForm() {
+    const [skills, setSkills] = useState([]);
+
+    useEffect(() => {
+        const fetchSkills = async () => {
+            try {
+                const response = await fetch("http://localhost:8003/skill_details");
+                const skillsData = await response.json();
+                setSkills(skillsData);
+            } catch (error) {
+                console.error("Error fetching skills:", error);
+            }
+        };
+        fetchSkills();
+    }, []);
+
     const initialFormData = {
         skill_name: "",
         skill_status: "",
@@ -20,8 +35,18 @@ function SkillCreateForm() {
         }));
     }
 
+    const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const existingSkill = skills.find(skill => skill.skill_name.toLowerCase() === formData.skill_name.toLowerCase());
+        if (existingSkill) {
+            setSnackBarMsg("Skill name already exists!");
+            setSnackbarSeverity("error");
+            setOpenSnackbar(true);
+            return;
+        }
         
         const generateId = () => Math.floor(Math.random() * 1000000000);
 
@@ -46,9 +71,11 @@ function SkillCreateForm() {
             if (!response.ok) {
                 console.error("Error posting data with status:", response.status, responseData);
                 setSnackBarMsg("Error creating skill");
+                setSnackbarSeverity("error");
                 setOpenSnackbar(true);
             } else { 
                 setSnackBarMsg("Skill created!");
+                setSnackbarSeverity("success"); 
                 setFormData(initialFormData);
                 setOpenSnackbar(true);
                 setTimeout(() => {
@@ -84,7 +111,7 @@ function SkillCreateForm() {
             style={{ position: "absolute", top: "35px", left: "50%", transform: "translateX(-50%)"}}>
                 <Alert
                 onClose={handleCloseSnackbar}
-                severity="success"
+                severity={snackbarSeverity}
                 sx={{ width: '100%' }}>
                     {snackbarMsg}
                 </Alert>
