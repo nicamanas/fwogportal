@@ -49,11 +49,11 @@ export default function HomePage() {
       setFilteredRoleListings(roleListings);
       return;
     }
-    for (const skill of selectedSkills) {
-      filteredRoles = roleListings.filter((roleListing) => {
+    filteredRoles = roleListings.filter((roleListing) => {
+      return selectedSkills.every((skill) => {
         return roleListing.skills.includes(skill);
       });
-    }
+    })
     setFilteredRoleListings(filteredRoles);
   };
 
