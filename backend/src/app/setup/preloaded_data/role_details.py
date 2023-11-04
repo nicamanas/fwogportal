@@ -25,8 +25,8 @@ DEFAULT_ROLE_DETAILS = [
     },
     {
         "role_id": 5,
-        "role_name": "Arsenist (Fire Starter)",
-        "role_description": "The Arsenist is responsible for starting fires in the organisation's premises. He/She is responsible for ensuring that the fires are started in a safe manner and that the fires cause sufficient damage to the organisation's premises.",
+        "role_name": "Arsonist (Fire Starter)",
+        "role_description": "The Arsonist is responsible for starting fires in the organisation's premises. He/She is responsible for ensuring that the fires are started in a safe manner and that the fires cause sufficient damage to the organisation's premises.",
         "role_status": "active"
     }
 ]
