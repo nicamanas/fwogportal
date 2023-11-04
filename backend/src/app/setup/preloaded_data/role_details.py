@@ -22,5 +22,11 @@ DEFAULT_ROLE_DETAILS = [
         "role_name": "Fire Warden",
         "role_description": "The Fire Warden is responsible for testing fire alarms and firefighting equipment and implementing risk assessment recommendations. In the event of a confirmed fire alarm or fire drill, the warden assists in the safe evacuation of staff and visitors from the premise immediately.",
         "role_status": "active"
+    },
+    {
+        "role_id": 5,
+        "role_name": "Arsenist (Fire Starter)",
+        "role_description": "The Arsenist is responsible for starting fires in the organisation's premises. He/She is responsible for ensuring that the fires are started in a safe manner and that the fires cause sufficient damage to the organisation's premises.",
+        "role_status": "active"
     }
 ]

@@ -29,5 +29,15 @@ DEFAULT_ROLE_LISTINGS = [
         "role_listing_creator": 2,
         "role_listing_updater": 2
     }, 
+    {
+        "role_listing_id": 4,
+        "role_id": 5,
+        "role_listing_desc": "Responsible for starting fires in the organization's premises.",
+        "role_listing_source": 2,
+        "role_listing_open": "2023-10-01T16:34:53.604Z",
+        "role_listing_close": "2023-12-01T16:34:53.604Z",
+        "role_listing_creator": 2,
+        "role_listing_updater": 2
+    }
 
 ]

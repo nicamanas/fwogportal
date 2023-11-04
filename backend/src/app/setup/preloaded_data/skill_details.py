@@ -29,4 +29,9 @@ DEFAULT_SKILL_DETAILS = [
         "skill_name": "Java Programming",
         "skill_status": "active"
     }, 
+    {
+        "skill_id": 7,
+        "skill_name": "Fire Starting",
+        "skill_status": "active"
+    }, 
 ]
