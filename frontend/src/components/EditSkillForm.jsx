@@ -43,6 +43,9 @@ function EditSkillForm({skill}) {
                 setFormData(fetchedSkill);
                 setSnackBarMsg("Skill updated!");
                 setOpenSnackbar(true);
+                setTimeout(() => {
+                  navigate("/skillcatalogue")
+                }, 1500)
             })
             .catch((error) => {
                 console.error("Error updating skill: ", error);

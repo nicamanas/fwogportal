@@ -13,7 +13,7 @@ from ...app.setup.db_prestart import init_db
 SQLALCHEMY_DATABASE_URL = "sqlite://"
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, 
+    SQLALCHEMY_DATABASE_URL,
     connect_args={"check_same_thread": False},
     poolclass=StaticPool,
 )
@@ -91,4 +91,4 @@ def test_get_skills_by_nonexistent_staff_id(test_db):
     data = response.json()
     assert data["detail"] == "Staff ID not found"
 
-# More tests here
+

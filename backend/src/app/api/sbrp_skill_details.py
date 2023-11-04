@@ -3,9 +3,6 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
 
-# from app.crud import sbrp_skill_details_crud as crud
-# from app.schemas import sbrp_schemas as schemas
-# from app.core.database import SessionLocal
 from ..crud import sbrp_skill_details_crud as crud
 from ..schemas import sbrp_schemas as schemas
 from ..core.database import SessionLocal
@@ -37,7 +34,6 @@ def get_skill_details_by_id(id: int, db: Session = Depends(get_db)):
 @router.post("/", response_model=schemas.SkillDetails, status_code=201)
 def create_skill_details(*, db: Session = Depends(get_db), payload: schemas.SkillDetails):
     skill = crud.create_skill_details(db=db, payload=payload)
-    print(skill)
     return skill
 
 @router.put("/{id}", response_model=schemas.SkillDetails)

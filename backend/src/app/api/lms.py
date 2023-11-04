@@ -3,9 +3,6 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
 
-# from app.crud import lms_crud as crud
-# from app.schemas import lms_schemas as schemas
-# from app.core.database import SessionLocal
 from ..crud import lms_crud as crud
 from ..schemas import lms_schemas as schemas
 from ..core.database import SessionLocal

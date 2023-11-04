@@ -6,9 +6,6 @@ from sqlalchemy.orm import Session
 from ..crud import rolelistings_crud as crud
 from ..schemas import sbrp_schemas as schemas
 from ..core.database import SessionLocal
-# from app.crud import rolelistings_crud as crud
-# from app.schemas import sbrp_schemas as schemas
-# from app.core.database import SessionLocal
 
 from collections import defaultdict
 
