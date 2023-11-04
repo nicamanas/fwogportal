@@ -64,6 +64,16 @@ export default function EditRoleListingForm({roleListing}) {
         //     "role_listing_creator": 0, (TO ADD!)
         //     "role_listing_updater": 0
         // }
+        const role_listing_open = Date.parse(formData.role_listing_open);
+        const role_listing_close = Date.parse(formData.role_listing_close);
+
+        if (role_listing_close < role_listing_open) {
+          console.error("Role listing close is before open");
+          setSnackBarMsg("Close date must not be before open date!");
+          setOpenSnackbar(true)
+          return;
+        }
+        
         formData.role_listing_open = `${formData.role_listing_open}T00:00:00.000Z`;
         formData.role_listing_close = `${formData.role_listing_close}T00:00:00.000Z`;
         
@@ -90,31 +100,6 @@ export default function EditRoleListingForm({roleListing}) {
             setSnackBarMsg("Error editing role listing!");
           })
           .finally(() => setOpenSnackbar(true));
-        // try {
-        //     const response = await fetch("http://localhost:8003/rolelistings/", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(roleListing)
-        //     });
-
-        //     const responseData = await response.json();
-
-        //     if (!response.ok) {
-        //         console.error("Error posting data with status:", response.status, responseData);
-        //         setSnackBarMsg("Error creating role listing!");
-        //     } else {
-        //         setSnackBarMsg("Role listing edited! Bringing you there...")
-        //         setFormData(initialFormData); 
-        //         setTimeout(() => {
-        //           navigate("/rolelistings/:id", { params: { id: responseData.role_listing_id } });
-        //         }, 1500)
-        //     }
-        //     setOpenSnackbar(true);
-        // } catch (error) {
-        //     console.error("Error posting data:", error);
-        // }
     }
 
     const [roles, setRoles] = useState([]);
@@ -145,7 +130,7 @@ export default function EditRoleListingForm({roleListing}) {
             onClose={handleCloseSnackbar}>
                 <Alert 
                 onClose={handleCloseSnackbar} 
-                severity="success" 
+                severity={snackbarMsg === "Successfully edited listing! Bringing you there..." ? "success" : "error"}
                 sx={{ width: '100%' }}>
                     {snackbarMsg}
                 </Alert>

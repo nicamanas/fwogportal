@@ -3,7 +3,7 @@ DEFAULT_ROLE_DETAILS = [
         "role_id": 1,
         "role_name": "Head, Talent Attraction",
         "role_description": "The Head, Talent Attraction is responsible for strategic workforce planning to support the organisation's growth strategies through establishing talent sourcing strategies, determining the philosophy for the selection and securing of candidates and overseeing the onboarding and integration of new hires into the organisation. He/She develops various approaches to meet workforce requirements and designs employer branding strategies. He oversees the selection processes and collaborates with business stakeholders for the hiring of key leadership roles. As a department head, he is responsible for setting the direction and articulating goals and objectives for the team, and driving the integration of Skills Frameworks across the organisation's talent attraction plans.The Head, Talent Attraction is an influential and inspiring leader who adopts a broad perspective in the decisions he makes. He is articulate and displays a genuine passion for motivating and developing his team.",
-        "role_status": "inactive"
+        "role_status": "active"
     },
     {
         "role_id": 2,
@@ -21,6 +21,12 @@ DEFAULT_ROLE_DETAILS = [
         "role_id": 4,
         "role_name": "Fire Warden",
         "role_description": "The Fire Warden is responsible for testing fire alarms and firefighting equipment and implementing risk assessment recommendations. In the event of a confirmed fire alarm or fire drill, the warden assists in the safe evacuation of staff and visitors from the premise immediately.",
+        "role_status": "active"
+    },
+    {
+        "role_id": 5,
+        "role_name": "Arsonist (Fire Starter)",
+        "role_description": "The Arsonist is responsible for starting fires in the organisation's premises. He/She is responsible for ensuring that the fires are started in a safe manner and that the fires cause sufficient damage to the organisation's premises.",
         "role_status": "active"
     }
 ]

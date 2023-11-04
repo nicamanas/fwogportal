@@ -33,8 +33,6 @@ export default function ResponsiveAppBar() {
 			handleCloseNavMenu()
 			navigate("/profile")
 		},
-		Account: () => {},
-		Dashboard: () => {},
 		Logout: () => {
 			UserStorage.clearUser()
 			handleCloseNavMenu()
