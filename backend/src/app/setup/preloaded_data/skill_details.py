@@ -2,7 +2,7 @@ DEFAULT_SKILL_DETAILS = [
     {
         "skill_id": 1,
         "skill_name": "Pascal Programming",
-        "skill_status": "inactive"
+        "skill_status": "active"
     },
     {
         "skill_id": 2,
