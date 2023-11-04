@@ -10,11 +10,6 @@ DEFAULT_STAFF_SKILLS = [
         "ss_status": "active"
     },
     {
-        "staff_id": 1,
-        "skill_id": 3,
-        "ss_status": "active"
-    },
-    {
         "staff_id": 2,
         "skill_id": 1,
         "ss_status": "unverified"
