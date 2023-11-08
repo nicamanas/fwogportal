@@ -81,6 +81,7 @@ npm i
 ```
 npm run test
 ```
+<img width="464" alt="Screenshot 2023-11-08 at 5 40 51 PM" src="https://github.com/nicamanas/fwogportal/assets/101983505/8aeea40c-10f7-4db8-9eac-3ed7e1ed74fb">
 
 ### Backend tests
 * Change directory to backend folder
@@ -106,6 +107,8 @@ or
 ```
 python -m pytest
 ```
+<img width="1139" alt="Screenshot 2023-11-08 at 3 14 48 PM" src="https://github.com/nicamanas/fwogportal/assets/101983505/974d6719-0259-463d-bc44-05e1424d1cc6">
+
 
 ## Team
 Allyne Zhang  
