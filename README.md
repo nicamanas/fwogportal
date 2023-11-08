@@ -29,29 +29,11 @@ Key functionalities include:
 git clone https://github.com/nicamanas/fwogportal
 ```
 
-### Starting frontend
-
-* Change directory to frontend folder
-```
-cd frontend
-```
-
-* Install dependencies
-```
-npm i
-```
-
-* Start development server
-```
-npm run dev
-```
-* Open server in browser, port may be different (check terminal message): ```http://localhost:5173/```
-
 ### Starting backend
 
 * Change directory to backend folder
 ```
-cd backend
+cd fwogportal/backend
 ```
 
 * Start containers
@@ -66,6 +48,24 @@ docker-compose up
 ```
 docker-compose down -v
 ```
+
+### Starting frontend
+
+* Change directory to frontend folder
+```
+cd fwogportal/frontend
+```
+
+* Install dependencies
+```
+npm i
+```
+
+* Start development server
+```
+npm run dev
+```
+* Open server in browser, port may be different (check terminal message): ```http://localhost:5173/```
 
 ## Running Tests
 ### Frontend tests
@@ -107,8 +107,8 @@ or
 ```
 python -m pytest
 ```
-<img width="1139" alt="Screenshot 2023-11-08 at 3 14 48 PM" src="https://github.com/nicamanas/fwogportal/assets/101983505/974d6719-0259-463d-bc44-05e1424d1cc6">
 
+<img width="604" alt="Screenshot 2023-11-08 at 5 49 20 PM" src="https://github.com/nicamanas/fwogportal/assets/101983505/2297cafe-4270-4ea1-a8f0-b00513d19af7">
 
 ## Team
 Allyne Zhang  
