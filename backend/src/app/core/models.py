@@ -251,6 +251,32 @@ class RoleListings(Base):
     role_app_listing_source = relationship("RoleApplications", back_populates="role_app_listing_source",
                                        primaryjoin='and_(RoleListings.role_listing_id == RoleApplications.role_listing_id)')
 
+    def __init__(self, role_listing_id, role_id, role_listing_desc, role_listing_source, role_listing_open, role_listing_close, role_listing_creator, role_listing_updater):
+        if not isinstance(role_listing_id, int):
+            raise TypeError("role_listing_id must be an integer")
+        if not isinstance(role_id, int):
+            raise TypeError("role_id must be an integer")
+        if not isinstance(role_listing_desc, str):
+            raise TypeError("role_listing_desc must be a string")
+        if not isinstance(role_listing_source, int):
+            raise TypeError("role_listing_source must be an integer")
+        if not isinstance(role_listing_open, datetime):
+            raise TypeError("role_listing_open must be a datetime")
+        if not isinstance(role_listing_close, datetime):
+            raise TypeError("role_listing_close must be a datetime")
+        if not isinstance(role_listing_creator, int):
+            raise TypeError("role_listing_creator must be an integer")
+        if not isinstance(role_listing_updater, int):
+            raise TypeError("role_listing_updater must be an integer")
+
+        self.role_listing_id = role_listing_id
+        self.role_id = role_id
+        self.role_listing_desc = role_listing_desc
+        self.role_listing_source = role_listing_source
+        self.role_listing_open = role_listing_open
+        self.role_listing_close = role_listing_close
+        self.role_listing_creator = role_listing_creator
+        self.role_listing_updater = role_listing_updater
 
 class SkillDetailsSBRP(Base):
     __tablename__ = "skill_details_sbrp"
