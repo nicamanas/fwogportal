@@ -14,6 +14,12 @@ An in-depth paragraph about your project and overview of use.
 * Node.js
 * npm
 
+### Cloning Repo
+* Clone this repository
+```
+git clone https://github.com/nicamanas/fwogportal
+```
+
 ### Starting frontend
 
 * Change directory to frontend folder
