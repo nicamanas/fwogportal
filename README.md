@@ -1,10 +1,18 @@
-# fwogportal
+# Skill-Based Role Portal (SBRP)
 
-Internal Skill-based Role Portal for Software Project Management (SPM)
+Skill-Based Role Portal for All-In-One
+(IS212 - Software Project Management)
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+An internal Skill-Based Role Portal application, designed for All-In-One.
+For staff of All-In-One to manage skills, manage and apply for roles within the company.
+Key functionalities include:
+
+- User Authentication and Management
+- Creation and Update of Staff and their Skills
+- Creation and Retrieval of Role Listings - open roles in All-In-One that staff can apply for
+- Application for open roles
 
 ## Getting Started
 
@@ -13,6 +21,12 @@ An in-depth paragraph about your project and overview of use.
 * Docker
 * Node.js
 * npm
+
+### Cloning Repo
+* Clone this repository
+```
+git clone https://github.com/nicamanas/fwogportal
+```
 
 ### Starting frontend
 
@@ -58,8 +72,6 @@ http://localhost:8003/docs
 ```
 
 ## Authors
-
-Contributors names and contact info
 
 Allyne
 Esther

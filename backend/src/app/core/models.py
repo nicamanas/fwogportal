@@ -87,6 +87,25 @@ class StaffDetails(Base):
                                         primaryjoin='and_(RoleApplications.staff_id == StaffDetails.staff_id)')
 
     def __init__(self, staff_id, fname, lname, dept, email, phone, biz_address, sys_role):
+        if not isinstance(staff_id, int):
+            raise TypeError("staff_id must be an integer")
+        if not isinstance(fname, str):
+            raise TypeError("fname must be a string")
+        if not isinstance(lname, str):
+            raise TypeError("lname must be a string")
+        if not isinstance(dept, str):
+            raise TypeError("dept must be a string")
+        if not isinstance(email, str):
+            raise TypeError("email must be a string")
+        if not isinstance(phone, str):
+            raise TypeError("phone must be a string")
+        if not isinstance(biz_address, str):
+            raise TypeError("biz_address must be a string")
+        if not isinstance(sys_role, str):
+            raise TypeError("sys_role must be a string")
+        if sys_role not in [e.value for e in StaffSysRole]:
+            raise ValueError("sys_role must be one of 'staff', 'hr', 'manager' or 'inactive'")
+        
         self.staff_id = staff_id
         self.fname = fname
         self.lname = lname
