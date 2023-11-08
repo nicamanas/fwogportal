@@ -16,8 +16,9 @@ Key functionalities include:
 
 ## Getting Started
 
-### Dependencies
+### Prerequisites
 
+* Python
 * Docker
 * Node.js
 * npm
@@ -44,10 +45,7 @@ npm i
 ```
 npm run dev
 ```
-* Open server in browser, port may be different (check terminal)
-```
-http://localhost:5173/
-```
+* Open server in browser, port may be different (check terminal message): ```http://localhost:5173/```
 
 ### Starting backend
 
@@ -61,20 +59,57 @@ cd backend
 docker-compose up 
 ```
 
+* View documentation and test endpoints at ```http://localhost:8003/docs```
+
+### Stopping backend
 * Shut down containers and remove volumes
 ```
 docker-compose down -v
 ```
 
-* View documentation and test endpoints
+## Running Tests
+### Frontend tests
+* Change directory to frontend folder
 ```
-http://localhost:8003/docs
+cd frontend
+```
+* Install dependencies
+```
+npm i
+```
+* Run tests
+```
+npm run test
 ```
 
-## Authors
+### Backend tests
+* Change directory to backend folder
+```
+cd backend
+```
 
-Allyne
-Esther
-Nicholas
-Steph
-Thaddeus
+* Change directory to /src folder
+```
+cd src
+```
+
+* Install dependencies from requirements.txt
+```
+pip install -r requirements.txt
+```
+
+* Run tests
+```
+pytest
+```
+or
+```
+python -m pytest
+```
+
+## Team
+Allyne Zhang  
+Esther Lam  
+Nicholas Tan  
+Hsu Thitsar Lwin  
+Thaddeus Lee
