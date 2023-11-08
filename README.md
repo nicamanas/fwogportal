@@ -1,4 +1,4 @@
-# fwogportal
+# Skill-Based Role Portal (SBRP)
 
 Skill-Based Role Portal for All-In-One
 (IS212 - Software Project Management)
@@ -72,8 +72,6 @@ http://localhost:8003/docs
 ```
 
 ## Authors
-
-Contributors names and contact info
 
 Allyne
 Esther
