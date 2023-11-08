@@ -1,4 +1,5 @@
 # Skill-Based Role Portal (SBRP)
+Click [here](https://github.com/nicamanas/fwogportal/) for access to the GitHub repository.
 
 Skill-Based Role Portal for All-In-One
 (IS212 - Software Project Management)
