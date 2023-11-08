@@ -101,7 +101,7 @@ class StaffDetails(Base):
             raise TypeError("phone must be a string")
         if not isinstance(biz_address, str):
             raise TypeError("biz_address must be a string")
-        if (sys_role not in [e.value for e in StaffSysRole]):
+        if sys_role not in [e.value for e in StaffSysRole]:
             raise ValueError("sys_role must be one of 'staff', 'hr', 'manager' or 'inactive'")
         
         self.staff_id = staff_id
